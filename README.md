@@ -16,7 +16,12 @@ Monitor battery status, power consumption, load, voltage, temperature and more �
 ## Prerequisites
 
 1. A CyberPower UPS registered in [PowerPanel Cloud](https://powerpanel.cyberpower.com)
-2. **Temperature unit must be set to Celsius** in the PowerPanel Cloud app:
+2. **Two-factor authentication must be DISABLED** on the PowerPanel Cloud account:
+   - Open the PowerPanel Cloud mobile app
+   - Go to **Account** → **Security**
+   - Turn off **Two-Factor Authentication**
+   - The integration uses the mobile app's login flow, which does not support 2FA — login will fail otherwise
+3. **Temperature unit must be set to Celsius** in the PowerPanel Cloud app:
    - Open the PowerPanel Cloud mobile app
    - Go to **Account** → **Settings**
    - Set **Temperature Unit** to **°C (Celsius)**
@@ -136,7 +141,7 @@ After setup:
 1. Open the device page for your UPS
 2. Set the **UPS Rated Power** (watts) in the Configuration section — this is required for the Load % sensor to work correctly
 
-<!-- [SCREENSHOT: device page - Configuration section with UPS Rated Power] -->
+![Device page with sensors](images/device_page.png)
 
 ## Configuration
 
