@@ -1,0 +1,11 @@
+# Patterns that should never appear in commits
+patterns:
+  - "eyJhbG"                    # JWT tokens
+  - "Bearer ey"                 # Bearer auth tokens
+  - "password.*=.*[A-Za-z]"     # Hardcoded passwords
+  - "172\\.21\\."               # Internal IP ranges
+  - "192\\.168\\."              # Local IP ranges
+  - "smbclient\\.register"      # SMB credentials
+  - "@hotmail\\.com"            # Personal email addresses
+  - "@gmail\\.com"              # Personal email addresses
+  - "\\d{6}[A-Z]{2}\\d{8}"      # Device serial number patterns

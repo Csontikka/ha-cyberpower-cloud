@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+
+# Environment & credentials
+.env
+*.secret
+credentials.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local dev config
+.*_dev/
+.claude/
+.omc/
+
+# Dev utility scripts (may contain credentials)
+deploy.py
+create_repo.py
+check_*.py
+test_*.py
+setup_*.py
+screenshot_*.py
+mask_*.py
+
+# Import/migration files
+import/
+
+# Screenshots (dev only)
+screenshots_targeted/

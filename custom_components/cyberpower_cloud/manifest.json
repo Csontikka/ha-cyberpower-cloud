@@ -1,0 +1,10 @@
+{
+  "domain": "cyberpower_cloud",
+  "name": "CyberPower PowerPanel Cloud",
+  "codeowners": ["@Csontikka"],
+  "config_flow": true,
+  "documentation": "https://github.com/Csontikka/ha-cyberpower-cloud",
+  "iot_class": "cloud_polling",
+  "requirements": [],
+  "version": "1.0.0"
+}

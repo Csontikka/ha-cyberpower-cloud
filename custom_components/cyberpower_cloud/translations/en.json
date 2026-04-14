@@ -1,0 +1,83 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Enter your PowerPanel Cloud credentials.",
+        "data": {
+          "email": "Email",
+          "password": "Password"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate CyberPower Cloud",
+        "description": "Your session has expired. Please enter your new password.",
+        "data": {
+          "password": "Password"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure CyberPower Cloud",
+        "description": "Update your PowerPanel Cloud credentials.",
+        "data": {
+          "email": "Email",
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid email or password",
+      "cannot_connect": "Cannot connect to CyberPower Cloud",
+      "no_devices": "No UPS devices found on this account"
+    },
+    "abort": {
+      "already_configured": "This account is already configured",
+      "reauth_successful": "Re-authentication successful",
+      "reconfigure_successful": "Reconfiguration successful"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "CyberPower Cloud Options",
+        "data": {
+          "scan_interval": "Update interval (seconds)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "CyberPower Cloud authentication failed",
+      "description": "Authentication failed for device **{device}**. Polling has been stopped to avoid account lockout. Please check your credentials and restart Home Assistant."
+    },
+    "api_error": {
+      "title": "CyberPower Cloud API error",
+      "description": "The CyberPower Cloud API returned errors multiple times in a row for device **{device}**. Polling has been stopped. Please check your connection and restart Home Assistant."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": { "name": "On Battery" }
+    },
+    "number": {
+      "ups_rated_power": { "name": "UPS Rated Power" }
+    },
+    "sensor": {
+      "input_voltage": { "name": "Input Voltage" },
+      "output_voltage": { "name": "Output Voltage" },
+      "input_frequency": { "name": "Input Frequency" },
+      "output_frequency": { "name": "Output Frequency" },
+      "battery_capacity": { "name": "Battery" },
+      "battery_runtime": { "name": "Battery Runtime" },
+      "load": { "name": "Load" },
+      "battery_health": { "name": "Battery Health" },
+      "ups_temperature": { "name": "UPS Temperature" },
+      "environment_temperature": { "name": "Environment Temperature" },
+      "environment_humidity": { "name": "Environment Humidity" },
+      "device_status": { "name": "Status" },
+      "power_consumption": { "name": "Power Consumption" },
+      "last_update": { "name": "Last Update" }
+    }
+  }
+}
