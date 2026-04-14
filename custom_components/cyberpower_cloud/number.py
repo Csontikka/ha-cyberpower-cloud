@@ -1,4 +1,5 @@
 """Number platform for CyberPower Cloud."""
+
 from __future__ import annotations
 
 from homeassistant.components.number import NumberEntity, NumberMode

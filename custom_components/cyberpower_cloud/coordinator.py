@@ -1,4 +1,5 @@
 """DataUpdateCoordinator for CyberPower Cloud."""
+
 from __future__ import annotations
 
 from datetime import timedelta
@@ -64,7 +65,8 @@ class CyberPowerCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             if self._consecutive_errors > 0:
                 _LOGGER.info(
                     "CyberPower %s recovered after %d error(s)",
-                    self.device_sn, self._consecutive_errors,
+                    self.device_sn,
+                    self._consecutive_errors,
                 )
             self._consecutive_errors = 0
 
@@ -72,7 +74,10 @@ class CyberPowerCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             bat_sta = merged.get("BatSta")
             if bat_sta is not None:
                 on_battery = bat_sta != 0
-                if self._previous_on_battery is not None and on_battery != self._previous_on_battery:
+                if (
+                    self._previous_on_battery is not None
+                    and on_battery != self._previous_on_battery
+                ):
                     event_data = {
                         "device_sn": self.device_sn,
                         "device_name": self.device_name,
@@ -80,12 +85,14 @@ class CyberPowerCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                     }
                     if on_battery:
                         _LOGGER.warning(
-                            "CyberPower %s: power outage detected!", self.device_sn,
+                            "CyberPower %s: power outage detected!",
+                            self.device_sn,
                         )
                         self.hass.bus.async_fire(EVENT_POWER_OUTAGE_STARTED, event_data)
                     else:
                         _LOGGER.info(
-                            "CyberPower %s: power restored", self.device_sn,
+                            "CyberPower %s: power restored",
+                            self.device_sn,
                         )
                         self.hass.bus.async_fire(EVENT_POWER_OUTAGE_ENDED, event_data)
                 self._previous_on_battery = on_battery
@@ -99,7 +106,9 @@ class CyberPowerCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             )
             return merged
         except AuthError as err:
-            _LOGGER.error("CyberPower %s auth failed, stopping polling: %s", self.device_sn, err)
+            _LOGGER.error(
+                "CyberPower %s auth failed, stopping polling: %s", self.device_sn, err
+            )
             self.update_interval = None  # stop polling
             async_create_issue(
                 self.hass,
@@ -115,12 +124,16 @@ class CyberPowerCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             self._consecutive_errors += 1
             _LOGGER.warning(
                 "CyberPower %s API error (%d/%d): %s",
-                self.device_sn, self._consecutive_errors, MAX_CONSECUTIVE_ERRORS, err,
+                self.device_sn,
+                self._consecutive_errors,
+                MAX_CONSECUTIVE_ERRORS,
+                err,
             )
             if self._consecutive_errors >= MAX_CONSECUTIVE_ERRORS:
                 _LOGGER.error(
                     "CyberPower API failed %d times in a row, stopping polling: %s",
-                    self._consecutive_errors, err,
+                    self._consecutive_errors,
+                    err,
                 )
                 self.update_interval = None  # stop polling
                 async_create_issue(

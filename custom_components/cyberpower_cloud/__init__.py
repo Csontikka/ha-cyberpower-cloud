@@ -1,4 +1,5 @@
 """CyberPower Cloud integration for Home Assistant."""
+
 from __future__ import annotations
 
 import logging
@@ -45,14 +46,17 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     scan_interval = entry.options.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL)
     _LOGGER.debug(
         "CyberPower Cloud: %d device(s), scan interval %ds",
-        len(api.devices), scan_interval,
+        len(api.devices),
+        scan_interval,
     )
 
     coordinators: list[CyberPowerCoordinator] = []
     for device in api.devices:
         # Use API-reported rated power if available, otherwise default
         api_rated_power = device.get("RP") or device.get("RVA")
-        effective_rated_power = int(api_rated_power) if api_rated_power else DEFAULT_UPS_RATED_POWER
+        effective_rated_power = (
+            int(api_rated_power) if api_rated_power else DEFAULT_UPS_RATED_POWER
+        )
 
         coordinator = CyberPowerCoordinator(
             hass,

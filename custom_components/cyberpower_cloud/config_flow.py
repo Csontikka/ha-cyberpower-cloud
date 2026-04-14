@@ -1,4 +1,5 @@
 """Config flow for CyberPower Cloud integration."""
+
 from __future__ import annotations
 
 import logging
@@ -16,7 +17,13 @@ from homeassistant.config_entries import (
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .api import AuthError, CyberPowerCloudAPI
-from .const import CONF_EMAIL, CONF_PASSWORD, CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL, DOMAIN
+from .const import (
+    CONF_EMAIL,
+    CONF_PASSWORD,
+    CONF_SCAN_INTERVAL,
+    DEFAULT_SCAN_INTERVAL,
+    DOMAIN,
+)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -78,9 +85,7 @@ class CyberPowerCloudConfigFlow(ConfigFlow, domain=DOMAIN):
             errors=errors,
         )
 
-    async def async_step_reauth(
-        self, entry_data: dict[str, Any]
-    ) -> ConfigFlowResult:
+    async def async_step_reauth(self, entry_data: dict[str, Any]) -> ConfigFlowResult:
         """Handle reauth when credentials are invalid."""
         return await self.async_step_reauth_confirm()
 
@@ -138,7 +143,9 @@ class CyberPowerCloudConfigFlow(ConfigFlow, domain=DOMAIN):
                 if not api.devices:
                     errors["base"] = "no_devices"
                 else:
-                    entry = self.hass.config_entries.async_get_entry(self.context["entry_id"])
+                    entry = self.hass.config_entries.async_get_entry(
+                        self.context["entry_id"]
+                    )
                     self.hass.config_entries.async_update_entry(entry, data=user_input)
                     await self.hass.config_entries.async_reload(entry.entry_id)
                     return self.async_abort(reason="reconfigure_successful")
@@ -148,7 +155,9 @@ class CyberPowerCloudConfigFlow(ConfigFlow, domain=DOMAIN):
             step_id="reconfigure",
             data_schema=vol.Schema(
                 {
-                    vol.Required(CONF_EMAIL, default=entry.data.get(CONF_EMAIL, "")): str,
+                    vol.Required(
+                        CONF_EMAIL, default=entry.data.get(CONF_EMAIL, "")
+                    ): str,
                     vol.Required(CONF_PASSWORD): str,
                 }
             ),

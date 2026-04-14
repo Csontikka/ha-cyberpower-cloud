@@ -1,4 +1,5 @@
 """CyberPower PowerPanel Cloud internal API client."""
+
 from __future__ import annotations
 
 import hashlib
@@ -26,7 +27,9 @@ class ApiError(Exception):
 class CyberPowerCloudAPI:
     """Async client for CyberPower PowerPanel Cloud internal API."""
 
-    def __init__(self, session: aiohttp.ClientSession, email: str, password: str) -> None:
+    def __init__(
+        self, session: aiohttp.ClientSession, email: str, password: str
+    ) -> None:
         self._session = session
         self._email = email
         self._password = password
@@ -37,9 +40,11 @@ class CyberPowerCloudAPI:
     @staticmethod
     def _encrypt_password(password: str) -> str:
         md5 = hashlib.md5(password.encode()).hexdigest().upper()
-        hmac_hash = hmac.new(
-            HMAC_SECRET.encode(), password.encode(), hashlib.sha512
-        ).hexdigest().upper()
+        hmac_hash = (
+            hmac.new(HMAC_SECRET.encode(), password.encode(), hashlib.sha512)
+            .hexdigest()
+            .upper()
+        )
         return md5 + hmac_hash
 
     def _headers(self) -> dict[str, str]:
@@ -111,7 +116,11 @@ class CyberPowerCloudAPI:
 
             if not data.get("result", True):
                 errmsg = data.get("errmsg", {})
-                body = errmsg.get("body", str(errmsg)) if isinstance(errmsg, dict) else str(errmsg)
+                body = (
+                    errmsg.get("body", str(errmsg))
+                    if isinstance(errmsg, dict)
+                    else str(errmsg)
+                )
                 _LOGGER.warning("API error on %s: %s", endpoint, body)
                 raise ApiError(f"{endpoint}: {body}")
 
@@ -130,12 +139,15 @@ class CyberPowerCloudAPI:
     async def get_status_log(self, dcode: int) -> dict[str, Any]:
         """Get latest status log entry (voltage, frequency, temp)."""
         now = int(time.time())
-        data = await self._post("/status/log", {
-            "otp": self._otp_key,
-            "dcode": dcode,
-            "from": now - 900,
-            "to": now,
-        })
+        data = await self._post(
+            "/status/log",
+            {
+                "otp": self._otp_key,
+                "dcode": dcode,
+                "from": now - 900,
+                "to": now,
+            },
+        )
         entries = data.get("msg", {}).get("body", [])
         if not entries:
             return {}
