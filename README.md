@@ -155,6 +155,9 @@ Click **Configure** on the integration card to adjust:
 |--------|-------|---------|-------------|
 | Update interval | 60–3600 s | 300 s | How often to poll the CyberPower Cloud API |
 
+> **How often does the UPS upload to the cloud?**
+> The CyberPower cloud card (RWCCARD100/200) pushes data to the PowerPanel Cloud approximately **every 60 seconds** during normal operation. Polling the API more often than that is wasteful — you will just get the same values back. For most users, the default **300 s** is a good balance between freshness and API load. If you need near-real-time data (e.g. during a power event), the `cyberpower_cloud_power_outage_started` / `_ended` events fire on state changes regardless of the poll interval. You can verify actual data freshness via the **Last Update** sensor — it shows the timestamp reported by the API for each device.
+
 ### Per-device settings
 
 Each UPS device has its own configurable **UPS Rated Power** (watts) on the device page. This value is used to calculate the Load % sensor.
