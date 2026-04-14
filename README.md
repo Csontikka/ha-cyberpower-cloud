@@ -1,13 +1,15 @@
 # CyberPower PowerPanel Cloud
 
 [![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/github/license/Csontikka/ha-cyberpower-cloud?color=yellow)](https://github.com/Csontikka/ha-cyberpower-cloud/blob/master/LICENSE)
 [![HA Version](https://img.shields.io/badge/Home%20Assistant-2024.1%2B-blue.svg)](https://www.home-assistant.io/)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Csontikka_ha-cyberpower-cloud&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Csontikka_ha-cyberpower-cloud)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Csontikka_ha-cyberpower-cloud&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=Csontikka_ha-cyberpower-cloud)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Csontikka_ha-cyberpower-cloud&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Csontikka_ha-cyberpower-cloud)
 
-![CyberPower PowerPanel Cloud Banner](images/banner.png)
+> **Note:** For best viewing experience, read this documentation on [GitHub](https://github.com/Csontikka/ha-cyberpower-cloud).
+
+![CyberPower PowerPanel Cloud Banner](https://raw.githubusercontent.com/Csontikka/ha-cyberpower-cloud/master/images/banner.png)
 
 Home Assistant custom integration for **CyberPower UPS** devices connected via [PowerPanel Cloud](https://powerpanel.cyberpower.com).
 
@@ -141,7 +143,7 @@ After setup:
 1. Open the device page for your UPS
 2. Set the **UPS Rated Power** (watts) in the Configuration section — this is required for the Load % sensor to work correctly
 
-![Device page with sensors](images/device_page.png)
+![Device page with sensors](https://raw.githubusercontent.com/Csontikka/ha-cyberpower-cloud/master/images/device_page.png)
 
 ## Configuration
 
