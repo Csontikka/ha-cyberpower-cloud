@@ -26,11 +26,11 @@
       },
       "rated_power_reminder": {
         "title": "Quasi fatto!",
-        "description": "Accesso riuscito. Dispositivi rilevati: **{devices}**.\n\n⚠️ **Importante:** Non dimenticare di impostare la **Potenza Nominale UPS** (watt) nella pagina di ogni dispositivo nella sezione Configurazione. Il sensore Carico % mostrerà *Sconosciuto* finché non configuri questo valore.\n\nValori tipici: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Consulta la scheda tecnica (non VA).\n\nClicca su Invia per terminare."
+        "description": "Accesso riuscito. Dispositivi rilevati: **{devices}**.\n\n⚠️ **Importante:** Non dimenticare di impostare la **Potenza nominale UPS** (watt) nella pagina di ogni dispositivo nella sezione Configurazione. Il sensore Carico % mostrerà *Sconosciuto* finché non configuri questo valore.\n\nValori tipici: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Consulta la scheda tecnica (non VA).\n\nClicca su Invia per terminare."
       },
       "reconfigure_reminder": {
         "title": "Credenziali aggiornate",
-        "description": "Riconfigurazione riuscita. Dispositivi: **{devices}**.\n\n⚠️ **Promemoria:** Verifica che la **Potenza Nominale UPS** sia ancora impostata correttamente — il sensore Carico % dipende da essa.\n\nClicca su Invia."
+        "description": "Riconfigurazione riuscita. Dispositivi: **{devices}**.\n\n⚠️ **Promemoria:** Verifica che la **Potenza nominale UPS** sia ancora impostata correttamente — il sensore Carico % dipende da essa.\n\nClicca su Invia."
       }
     },
     "error": {
@@ -72,7 +72,7 @@
     },
     "number": {
       "ups_rated_power": {
-        "name": "Potenza Nominale UPS"
+        "name": "Potenza nominale UPS"
       }
     },
     "sensor": {

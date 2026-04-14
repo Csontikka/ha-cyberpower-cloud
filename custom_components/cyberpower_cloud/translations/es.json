@@ -26,11 +26,11 @@
       },
       "rated_power_reminder": {
         "title": "¡Casi listo!",
-        "description": "Inicio de sesión correcto. Dispositivos detectados: **{devices}**.\n\n⚠️ **Importante:** No olvide configurar la **Potencia Nominal del SAI** (vatios) en la página de cada dispositivo en la sección Configuración. El sensor de Carga % mostrará *Desconocido* hasta que configure este valor.\n\nValores típicos: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Consulte la hoja de datos (no VA).\n\nHaga clic en Enviar para finalizar."
+        "description": "Inicio de sesión correcto. Dispositivos detectados: **{devices}**.\n\n⚠️ **Importante:** No olvide configurar la **Potencia nominal del SAI** (vatios) en la página de cada dispositivo en la sección Configuración. El sensor de Carga % mostrará *Desconocido* hasta que configure este valor.\n\nValores típicos: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Consulte la hoja de datos (no VA).\n\nHaga clic en Enviar para finalizar."
       },
       "reconfigure_reminder": {
         "title": "Credenciales actualizadas",
-        "description": "Reconfiguración correcta. Dispositivos: **{devices}**.\n\n⚠️ **Recordatorio:** Asegúrese de que la **Potencia Nominal del SAI** siga configurada correctamente — el sensor de Carga % depende de ella.\n\nHaga clic en Enviar."
+        "description": "Reconfiguración correcta. Dispositivos: **{devices}**.\n\n⚠️ **Recordatorio:** Asegúrese de que la **Potencia nominal del SAI** siga configurada correctamente — el sensor de Carga % depende de ella.\n\nHaga clic en Enviar."
       }
     },
     "error": {
@@ -72,7 +72,7 @@
     },
     "number": {
       "ups_rated_power": {
-        "name": "Potencia Nominal del SAI"
+        "name": "Potencia nominal del SAI"
       }
     },
     "sensor": {

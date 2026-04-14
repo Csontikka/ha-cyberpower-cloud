@@ -26,11 +26,11 @@
       },
       "rated_power_reminder": {
         "title": "Quase pronto!",
-        "description": "Login bem-sucedido. Dispositivos descobertos: **{devices}**.\n\n⚠️ **Importante:** Não se esqueça de definir a **Potência Nominal do No-break** (watts) na página de cada dispositivo na seção Configuração. O sensor de Carga % mostrará *Desconhecido* até que você configure este valor.\n\nValores típicos: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Verifique o datasheet (não VA).\n\nClique em Enviar para finalizar."
+        "description": "Login bem-sucedido. Dispositivos descobertos: **{devices}**.\n\n⚠️ **Importante:** Não se esqueça de definir a **Potência nominal do No-break** (watts) na página de cada dispositivo na seção Configuração. O sensor de Carga % mostrará *Desconhecido* até que você configure este valor.\n\nValores típicos: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Verifique o datasheet (não VA).\n\nClique em Enviar para finalizar."
       },
       "reconfigure_reminder": {
         "title": "Credenciais atualizadas",
-        "description": "Reconfiguração bem-sucedida. Dispositivos: **{devices}**.\n\n⚠️ **Lembrete:** Certifique-se de que a **Potência Nominal do No-break** continua corretamente definida — o sensor de Carga % depende dela.\n\nClique em Enviar."
+        "description": "Reconfiguração bem-sucedida. Dispositivos: **{devices}**.\n\n⚠️ **Lembrete:** Certifique-se de que a **Potência nominal do No-break** continua corretamente definida — o sensor de Carga % depende dela.\n\nClique em Enviar."
       }
     },
     "error": {
@@ -72,7 +72,7 @@
     },
     "number": {
       "ups_rated_power": {
-        "name": "Potência Nominal do No-break"
+        "name": "Potência nominal do No-break"
       }
     },
     "sensor": {

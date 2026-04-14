@@ -26,11 +26,11 @@
       },
       "rated_power_reminder": {
         "title": "Aproape gata!",
-        "description": "Autentificare reușită. Dispozitive detectate: **{devices}**.\n\n⚠️ **Important:** Nu uitați să setați **Puterea Nominală UPS** (wați) pe pagina fiecărui dispozitiv în secțiunea Configurare. Senzorul Sarcină % va afișa *Necunoscut* până configurați această valoare.\n\nValori tipice: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Verificați fișa tehnică (nu VA).\n\nApăsați Trimite pentru a finaliza."
+        "description": "Autentificare reușită. Dispozitive detectate: **{devices}**.\n\n⚠️ **Important:** Nu uitați să setați **Puterea nominală UPS** (wați) pe pagina fiecărui dispozitiv în secțiunea Configurare. Senzorul Sarcină % va afișa *Necunoscut* până configurați această valoare.\n\nValori tipice: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Verificați fișa tehnică (nu VA).\n\nApăsați Trimite pentru a finaliza."
       },
       "reconfigure_reminder": {
         "title": "Acreditări actualizate",
-        "description": "Reconfigurare reușită. Dispozitive: **{devices}**.\n\n⚠️ **Mementoriu:** Asigurați-vă că **Puterea Nominală UPS** este încă setată corect — senzorul Sarcină % depinde de ea.\n\nApăsați Trimite."
+        "description": "Reconfigurare reușită. Dispozitive: **{devices}**.\n\n⚠️ **Memento:** Asigurați-vă că **Puterea nominală UPS** este încă setată corect — senzorul Sarcină % depinde de ea.\n\nApăsați Trimite."
       }
     },
     "error": {
@@ -72,7 +72,7 @@
     },
     "number": {
       "ups_rated_power": {
-        "name": "Puterea Nominală UPS"
+        "name": "Puterea nominală UPS"
       }
     },
     "sensor": {

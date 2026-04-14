@@ -26,11 +26,11 @@
       },
       "rated_power_reminder": {
         "title": "Nesten ferdig!",
-        "description": "Innlogging vellykket. Oppdagede enheter: **{devices}**.\n\n⚠️ **Viktig:** Ikke glem å stille inn **UPS Merkeeffekt** (watt) på hver enhetsside under Konfigurasjon. Last%-sensoren vil vise *Ukjent* til du konfigurerer denne verdien.\n\nTypiske verdier: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Sjekk databladet (ikke VA).\n\nKlikk Send for å fullføre."
+        "description": "Innlogging vellykket. Oppdagede enheter: **{devices}**.\n\n⚠️ **Viktig:** Ikke glem å stille inn **UPS merkeeffekt** (watt) på hver enhetsside under Konfigurasjon. Last%-sensoren vil vise *Ukjent* til du konfigurerer denne verdien.\n\nTypiske verdier: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Sjekk databladet (ikke VA).\n\nKlikk Send for å fullføre."
       },
       "reconfigure_reminder": {
         "title": "Legitimasjon oppdatert",
-        "description": "Rekonfigurasjon vellykket. Enheter: **{devices}**.\n\n⚠️ **Påminnelse:** Kontroller at **UPS Merkeeffekt** fortsatt er riktig satt — Last%-sensoren er avhengig av den.\n\nKlikk Send."
+        "description": "Rekonfigurasjon vellykket. Enheter: **{devices}**.\n\n⚠️ **Påminnelse:** Kontroller at **UPS merkeeffekt** fortsatt er riktig satt — Last%-sensoren er avhengig av den.\n\nKlikk Send."
       }
     },
     "error": {
@@ -72,7 +72,7 @@
     },
     "number": {
       "ups_rated_power": {
-        "name": "UPS Merkeeffekt"
+        "name": "UPS merkeeffekt"
       }
     },
     "sensor": {

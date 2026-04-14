@@ -67,7 +67,7 @@
   "entity": {
     "binary_sensor": {
       "on_battery": {
-        "name": "Ant baterijos"
+        "name": "Veikia iš baterijos"
       }
     },
     "number": {

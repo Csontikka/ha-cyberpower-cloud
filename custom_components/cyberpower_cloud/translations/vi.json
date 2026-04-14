@@ -67,7 +67,7 @@
   "entity": {
     "binary_sensor": {
       "on_battery": {
-        "name": "Trên pin"
+        "name": "Chạy bằng pin"
       }
     },
     "number": {

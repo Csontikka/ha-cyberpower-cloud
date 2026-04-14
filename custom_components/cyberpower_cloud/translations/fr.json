@@ -26,11 +26,11 @@
       },
       "rated_power_reminder": {
         "title": "Presque terminé !",
-        "description": "Connexion réussie. Appareils détectés : **{devices}**.\n\n⚠️ **Important :** N'oubliez pas de définir la **Puissance Nominale de l'Onduleur** (watts) sur la page de chaque appareil dans la section Configuration. Le capteur de Charge % affichera *Inconnu* tant que cette valeur n'est pas configurée.\n\nValeurs typiques : OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Consultez la fiche technique (pas VA).\n\nCliquez sur Envoyer pour terminer."
+        "description": "Connexion réussie. Appareils détectés : **{devices}**.\n\n⚠️ **Important :** N'oubliez pas de définir la **Puissance nominale de l'onduleur** (watts) sur la page de chaque appareil dans la section Configuration. Le capteur de Charge % affichera *Inconnu* tant que cette valeur n'est pas configurée.\n\nValeurs typiques : OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Consultez la fiche technique (pas VA).\n\nCliquez sur Envoyer pour terminer."
       },
       "reconfigure_reminder": {
         "title": "Identifiants mis à jour",
-        "description": "Reconfiguration réussie. Appareils : **{devices}**.\n\n⚠️ **Rappel :** Assurez-vous que la **Puissance Nominale de l'Onduleur** est toujours correctement définie — le capteur de Charge % en dépend.\n\nCliquez sur Envoyer."
+        "description": "Reconfiguration réussie. Appareils : **{devices}**.\n\n⚠️ **Rappel :** Assurez-vous que la **Puissance nominale de l'onduleur** est toujours correctement définie — le capteur de Charge % en dépend.\n\nCliquez sur Envoyer."
       }
     },
     "error": {
@@ -72,7 +72,7 @@
     },
     "number": {
       "ups_rated_power": {
-        "name": "Puissance Nominale de l'Onduleur"
+        "name": "Puissance nominale de l'onduleur"
       }
     },
     "sensor": {

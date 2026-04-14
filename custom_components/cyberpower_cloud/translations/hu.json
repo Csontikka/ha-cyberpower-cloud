@@ -26,11 +26,11 @@
       },
       "rated_power_reminder": {
         "title": "Majdnem kész!",
-        "description": "Sikeres bejelentkezés. Talált eszközök: **{devices}**.\n\n⚠️ **Fontos:** Ne felejtse el beállítani az **UPS Névleges Teljesítményt** (watt) minden eszköz oldalán a Konfiguráció szekcióban. A Terhelés % szenzor *Ismeretlen* értéket fog mutatni, amíg nem konfigurálja ezt az értéket.\n\nTipikus értékek: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Ellenőrizze a UPS adatlapját a pontos watt értékért (nem VA).\n\nKattintson a Küldés gombra a befejezéshez."
+        "description": "Sikeres bejelentkezés. Talált eszközök: **{devices}**.\n\n⚠️ **Fontos:** Ne felejtse el beállítani az **UPS névleges teljesítményt** (watt) minden eszköz oldalán a Konfiguráció szekcióban. A Terhelés % szenzor *Ismeretlen* értéket fog mutatni, amíg nem konfigurálja ezt az értéket.\n\nTipikus értékek: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Ellenőrizze a UPS adatlapját a pontos watt értékért (nem VA).\n\nKattintson a Küldés gombra a befejezéshez."
       },
       "reconfigure_reminder": {
         "title": "Adatok frissítve",
-        "description": "Újrakonfigurálás sikeres. Eszközök: **{devices}**.\n\n⚠️ **Emlékeztető:** Győződjön meg róla, hogy az **UPS Névleges Teljesítmény** továbbra is helyesen van beállítva — a Terhelés % szenzor ettől függ.\n\nKattintson a Küldés gombra."
+        "description": "Újrakonfigurálás sikeres. Eszközök: **{devices}**.\n\n⚠️ **Emlékeztető:** Győződjön meg róla, hogy az **UPS névleges teljesítmény** továbbra is helyesen van beállítva — a Terhelés % szenzor ettől függ.\n\nKattintson a Küldés gombra."
       }
     },
     "error": {
@@ -72,7 +72,7 @@
     },
     "number": {
       "ups_rated_power": {
-        "name": "UPS Névleges Teljesítmény"
+        "name": "UPS névleges teljesítmény"
       }
     },
     "sensor": {
@@ -92,13 +92,13 @@
         "name": "Akkumulátor"
       },
       "battery_runtime": {
-        "name": "Hátralévő akkumulátor idő"
+        "name": "Hátralévő akkumulátoridő"
       },
       "load": {
         "name": "Terhelés"
       },
       "battery_health": {
-        "name": "Akkumulátor állapot"
+        "name": "Akkumulátor állapota"
       },
       "ups_temperature": {
         "name": "UPS hőmérséklet"
@@ -113,7 +113,7 @@
         "name": "Állapot"
       },
       "power_consumption": {
-        "name": "Teljesítményfogyasztás"
+        "name": "Fogyasztás"
       },
       "last_update": {
         "name": "Utolsó frissítés"

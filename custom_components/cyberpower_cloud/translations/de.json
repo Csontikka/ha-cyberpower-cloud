@@ -34,7 +34,7 @@
       }
     },
     "error": {
-      "invalid_auth": "Ungültige E-Mail oder Passwort",
+      "invalid_auth": "Ungültige E-Mail oder ungültiges Passwort",
       "cannot_connect": "Verbindung zu CyberPower Cloud nicht möglich",
       "no_devices": "Keine USV-Geräte in diesem Konto gefunden"
     },
@@ -67,7 +67,7 @@
   "entity": {
     "binary_sensor": {
       "on_battery": {
-        "name": "Auf Batterie"
+        "name": "Batteriebetrieb"
       }
     },
     "number": {

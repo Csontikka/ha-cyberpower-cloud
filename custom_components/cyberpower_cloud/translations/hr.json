@@ -25,7 +25,7 @@
         }
       },
       "rated_power_reminder": {
-        "title": "Gotovo gotovo!",
+        "title": "Skoro gotovo!",
         "description": "Prijava uspješna. Pronađeni uređaji: **{devices}**.\n\n⚠️ **Važno:** Ne zaboravite postaviti **Nazivnu snagu UPS-a** (watti) na stranici svakog uređaja u odjeljku Konfiguracija. Senzor Opterećenje % prikazivat će *Nepoznato* dok ne konfigurirate ovu vrijednost.\n\nTipične vrijednosti: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Provjerite tehnički list (ne VA).\n\nKliknite Pošalji za završetak."
       },
       "reconfigure_reminder": {

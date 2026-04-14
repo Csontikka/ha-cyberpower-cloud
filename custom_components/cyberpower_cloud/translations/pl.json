@@ -26,11 +26,11 @@
       },
       "rated_power_reminder": {
         "title": "Prawie gotowe!",
-        "description": "Logowanie powiodło się. Wykryte urządzenia: **{devices}**.\n\n⚠️ **Ważne:** Nie zapomnij ustawić **Mocy Znamionowej UPS** (waty) na stronie każdego urządzenia w sekcji Konfiguracja. Czujnik Obciążenie % będzie pokazywał *Nieznany*, dopóki nie skonfigurujesz tej wartości.\n\nTypowe wartości: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Sprawdź kartę katalogową (nie VA).\n\nKliknij Wyślij, aby zakończyć."
+        "description": "Logowanie powiodło się. Wykryte urządzenia: **{devices}**.\n\n⚠️ **Ważne:** Nie zapomnij ustawić **Mocy znamionowej UPS** (waty) na stronie każdego urządzenia w sekcji Konfiguracja. Czujnik Obciążenie % będzie pokazywał *Nieznany*, dopóki nie skonfigurujesz tej wartości.\n\nTypowe wartości: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Sprawdź kartę katalogową (nie VA).\n\nKliknij Wyślij, aby zakończyć."
       },
       "reconfigure_reminder": {
         "title": "Dane uwierzytelniające zaktualizowane",
-        "description": "Zmiana konfiguracji udana. Urządzenia: **{devices}**.\n\n⚠️ **Przypomnienie:** Upewnij się, że **Moc Znamionowa UPS** jest nadal prawidłowo ustawiona — czujnik Obciążenie % od niej zależy.\n\nKliknij Wyślij."
+        "description": "Zmiana konfiguracji udana. Urządzenia: **{devices}**.\n\n⚠️ **Przypomnienie:** Upewnij się, że **Moc znamionowa UPS** jest nadal prawidłowo ustawiona — czujnik Obciążenie % od niej zależy.\n\nKliknij Wyślij."
       }
     },
     "error": {
@@ -72,7 +72,7 @@
     },
     "number": {
       "ups_rated_power": {
-        "name": "Moc Znamionowa UPS"
+        "name": "Moc znamionowa UPS"
       }
     },
     "sensor": {

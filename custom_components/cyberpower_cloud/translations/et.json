@@ -67,7 +67,7 @@
   "entity": {
     "binary_sensor": {
       "on_battery": {
-        "name": "Akul"
+        "name": "Akutoitel"
       }
     },
     "number": {
@@ -113,7 +113,7 @@
         "name": "Olek"
       },
       "power_consumption": {
-        "name": "Võimsuse tarbimine"
+        "name": "Energiatarve"
       },
       "last_update": {
         "name": "Viimane uuendus"

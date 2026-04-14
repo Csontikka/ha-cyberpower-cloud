@@ -26,11 +26,11 @@
       },
       "rated_power_reminder": {
         "title": "Neredeyse bitti!",
-        "description": "Giriş başarılı. Bulunan cihazlar: **{devices}**.\n\n⚠️ **Önemli:** Her cihaz sayfasında Yapılandırma bölümü altında **UPS Nominal Güç** (watt) ayarını yapmayı unutmayın. Yük % sensörü bu değeri yapılandırana kadar *Bilinmiyor* gösterecektir.\n\nTipik değerler: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Kesin watt değeri için veri sayfasını kontrol edin (VA değil).\n\nKurulumu tamamlamak için Gönder'e tıklayın."
+        "description": "Giriş başarılı. Bulunan cihazlar: **{devices}**.\n\n⚠️ **Önemli:** Her cihaz sayfasında Yapılandırma bölümü altında **UPS nominal güç** (watt) ayarını yapmayı unutmayın. Yük % sensörü bu değeri yapılandırana kadar *Bilinmiyor* gösterecektir.\n\nTipik değerler: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Kesin watt değeri için veri sayfasını kontrol edin (VA değil).\n\nKurulumu tamamlamak için Gönder'e tıklayın."
       },
       "reconfigure_reminder": {
         "title": "Kimlik bilgileri güncellendi",
-        "description": "Yeniden yapılandırma başarılı. Cihazlar: **{devices}**.\n\n⚠️ **Hatırlatma:** **UPS Nominal Güç** değerinin hâlâ doğru ayarlandığından emin olun — Yük % sensörü buna bağlıdır.\n\nDeğişiklikleri uygulamak için Gönder'e tıklayın."
+        "description": "Yeniden yapılandırma başarılı. Cihazlar: **{devices}**.\n\n⚠️ **Hatırlatma:** **UPS nominal güç** değerinin hâlâ doğru ayarlandığından emin olun — Yük % sensörü buna bağlıdır.\n\nDeğişiklikleri uygulamak için Gönder'e tıklayın."
       }
     },
     "error": {
@@ -67,12 +67,12 @@
   "entity": {
     "binary_sensor": {
       "on_battery": {
-        "name": "Batarya ile"
+        "name": "Bataryada"
       }
     },
     "number": {
       "ups_rated_power": {
-        "name": "UPS Nominal Güç"
+        "name": "UPS nominal güç"
       }
     },
     "sensor": {

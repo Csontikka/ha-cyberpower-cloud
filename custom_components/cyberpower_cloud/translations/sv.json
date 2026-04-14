@@ -26,11 +26,11 @@
       },
       "rated_power_reminder": {
         "title": "Nästan klart!",
-        "description": "Inloggning lyckades. Upptäckta enheter: **{devices}**.\n\n⚠️ **Viktigt:** Glöm inte att ställa in **UPS Märkeffekt** (watt) på varje enhetssida under Konfiguration. Belastning %-sensorn visar *Okänt* tills du konfigurerar detta värde.\n\nTypiska värden: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Kontrollera databladet (inte VA).\n\nKlicka på Skicka för att slutföra."
+        "description": "Inloggning lyckades. Upptäckta enheter: **{devices}**.\n\n⚠️ **Viktigt:** Glöm inte att ställa in **UPS märkeffekt** (watt) på varje enhetssida under Konfiguration. Belastning %-sensorn visar *Okänt* tills du konfigurerar detta värde.\n\nTypiska värden: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Kontrollera databladet (inte VA).\n\nKlicka på Skicka för att slutföra."
       },
       "reconfigure_reminder": {
         "title": "Uppgifter uppdaterade",
-        "description": "Omkonfigurering lyckades. Enheter: **{devices}**.\n\n⚠️ **Påminnelse:** Se till att **UPS Märkeffekt** fortfarande är korrekt inställd — Belastning %-sensorn beror på den.\n\nKlicka på Skicka."
+        "description": "Omkonfigurering lyckades. Enheter: **{devices}**.\n\n⚠️ **Påminnelse:** Se till att **UPS märkeffekt** fortfarande är korrekt inställd — Belastning %-sensorn beror på den.\n\nKlicka på Skicka."
       }
     },
     "error": {
@@ -72,7 +72,7 @@
     },
     "number": {
       "ups_rated_power": {
-        "name": "UPS Märkeffekt"
+        "name": "UPS märkeffekt"
       }
     },
     "sensor": {

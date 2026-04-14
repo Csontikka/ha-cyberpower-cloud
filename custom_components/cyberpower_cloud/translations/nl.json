@@ -26,11 +26,11 @@
       },
       "rated_power_reminder": {
         "title": "Bijna klaar!",
-        "description": "Inloggen gelukt. Gevonden apparaten: **{devices}**.\n\n⚠️ **Belangrijk:** Vergeet niet om het **UPS Nominaal Vermogen** (watts) in te stellen op elke apparaatpagina in de sectie Configuratie. De Belasting %-sensor toont *Onbekend* totdat u deze waarde configureert.\n\nTypische waarden: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Controleer het datablad (geen VA).\n\nKlik op Verzenden om te voltooien."
+        "description": "Inloggen gelukt. Gevonden apparaten: **{devices}**.\n\n⚠️ **Belangrijk:** Vergeet niet om het **UPS nominaal vermogen** (watts) in te stellen op elke apparaatpagina in de sectie Configuratie. De Belasting %-sensor toont *Onbekend* totdat u deze waarde configureert.\n\nTypische waarden: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Controleer het datablad (geen VA).\n\nKlik op Verzenden om te voltooien."
       },
       "reconfigure_reminder": {
         "title": "Inloggegevens bijgewerkt",
-        "description": "Herconfiguratie gelukt. Apparaten: **{devices}**.\n\n⚠️ **Herinnering:** Zorg dat het **UPS Nominaal Vermogen** nog steeds correct is ingesteld — de Belasting %-sensor hangt ervan af.\n\nKlik op Verzenden."
+        "description": "Herconfiguratie gelukt. Apparaten: **{devices}**.\n\n⚠️ **Herinnering:** Zorg dat het **UPS nominaal vermogen** nog steeds correct is ingesteld — de Belasting %-sensor hangt ervan af.\n\nKlik op Verzenden."
       }
     },
     "error": {
@@ -72,7 +72,7 @@
     },
     "number": {
       "ups_rated_power": {
-        "name": "UPS Nominaal Vermogen"
+        "name": "UPS nominaal vermogen"
       }
     },
     "sensor": {

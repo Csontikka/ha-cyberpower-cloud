@@ -26,11 +26,11 @@
       },
       "rated_power_reminder": {
         "title": "Næsten færdig!",
-        "description": "Login lykkedes. Fundne enheder: **{devices}**.\n\n⚠️ **Vigtigt:** Husk at indstille **UPS Nominel Effekt** (watt) på hver enheds side under Konfiguration. Belastningssensoren vil vise *Ukendt*, indtil du indstiller denne værdi.\n\nTypiske værdier: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Tjek datablad (ikke VA).\n\nKlik Send for at afslutte."
+        "description": "Login lykkedes. Fundne enheder: **{devices}**.\n\n⚠️ **Vigtigt:** Husk at indstille **UPS nominel effekt** (watt) på hver enheds side under Konfiguration. Belastningssensoren vil vise *Ukendt*, indtil du indstiller denne værdi.\n\nTypiske værdier: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Tjek datablad (ikke VA).\n\nKlik Send for at afslutte."
       },
       "reconfigure_reminder": {
         "title": "Oplysninger opdateret",
-        "description": "Omkonfiguration lykkedes. Enheder: **{devices}**.\n\n⚠️ **Påmindelse:** Sørg for, at **UPS Nominel Effekt** stadig er korrekt indstillet — belastningssensoren afhænger af den.\n\nKlik Send."
+        "description": "Omkonfiguration lykkedes. Enheder: **{devices}**.\n\n⚠️ **Påmindelse:** Sørg for, at **UPS nominel effekt** stadig er korrekt indstillet — belastningssensoren afhænger af den.\n\nKlik Send."
       }
     },
     "error": {
@@ -72,7 +72,7 @@
     },
     "number": {
       "ups_rated_power": {
-        "name": "UPS Nominel Effekt"
+        "name": "UPS nominel effekt"
       }
     },
     "sensor": {
