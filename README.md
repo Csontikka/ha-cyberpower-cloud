@@ -10,6 +10,15 @@ Monitor battery status, power consumption, load, voltage, temperature and more �
 
 <!-- [SCREENSHOT: banner - HA device page showing all CyberPower sensors] -->
 
+## Prerequisites
+
+1. A CyberPower UPS registered in [PowerPanel Cloud](https://powerpanel.cyberpower.com)
+2. **Temperature unit must be set to Celsius** in the PowerPanel Cloud app:
+   - Open the PowerPanel Cloud mobile app
+   - Go to **Account** → **Settings**
+   - Set **Temperature Unit** to **°C (Celsius)**
+   - The API returns raw values without unit indicators — this integration assumes Celsius
+
 ## Supported devices
 
 Works with any CyberPower UPS registered in PowerPanel Cloud, including models with:
