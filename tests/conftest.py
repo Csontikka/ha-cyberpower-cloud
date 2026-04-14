@@ -6,7 +6,7 @@ from unittest.mock import AsyncMock, patch
 
 import pytest
 
-from homeassistant.const import CONF_EMAIL, CONF_PASSWORD
+from homeassistant.core import HomeAssistant
 
 from custom_components.cyberpower_cloud.const import DOMAIN
 
@@ -54,8 +54,8 @@ MOCK_LOGIN_RESPONSE = {
 }
 
 MOCK_CONFIG_ENTRY_DATA = {
-    CONF_EMAIL: MOCK_EMAIL,
-    CONF_PASSWORD: MOCK_PASSWORD,
+    "email": MOCK_EMAIL,
+    "password": MOCK_PASSWORD,
 }
 
 
@@ -75,9 +75,10 @@ def mock_api() -> Generator[AsyncMock]:
 
 
 @pytest.fixture
-def mock_config_entry(hass):
+def mock_config_entry(hass: HomeAssistant):
     """Create a mock config entry."""
     from homeassistant.config_entries import ConfigEntry
+    from unittest.mock import MagicMock
 
     entry = ConfigEntry(
         version=1,
@@ -87,6 +88,8 @@ def mock_config_entry(hass):
         data=MOCK_CONFIG_ENTRY_DATA,
         source="user",
         unique_id=MOCK_EMAIL,
+        options={},
+        discovery_keys=MagicMock(),
     )
     entry.add_to_hass(hass)
     return entry

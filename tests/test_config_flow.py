@@ -1,7 +1,7 @@
 """Tests for the CyberPower Cloud config flow."""
 from __future__ import annotations
 
-from unittest.mock import AsyncMock, patch
+from unittest.mock import AsyncMock, MagicMock, patch
 
 import aiohttp
 import pytest
@@ -13,7 +13,17 @@ from homeassistant.data_entry_flow import FlowResultType
 from custom_components.cyberpower_cloud.api import AuthError
 from custom_components.cyberpower_cloud.const import DOMAIN
 
-from .conftest import MOCK_CONFIG_ENTRY_DATA, MOCK_DEVICE, MOCK_EMAIL, MOCK_LOGIN_RESPONSE
+from .conftest import MOCK_CONFIG_ENTRY_DATA, MOCK_EMAIL
+
+
+@pytest.fixture(autouse=True)
+def _mock_setup_entry():
+    """Prevent actual setup during config flow tests."""
+    with patch(
+        "custom_components.cyberpower_cloud.async_setup_entry",
+        return_value=True,
+    ):
+        yield
 
 
 async def test_user_flow_success(hass: HomeAssistant, mock_api: AsyncMock) -> None:
