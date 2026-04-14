@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Εισαγάγετε τα διαπιστευτήρια του PowerPanel Cloud.",
+        "data": {
+          "email": "Email",
+          "password": "Κωδικός πρόσβασης"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Επανέλεγχος ταυτότητας CyberPower Cloud",
+        "description": "Η συνεδρία έληξε. Εισαγάγετε τον νέο κωδικό πρόσβασης.",
+        "data": {
+          "password": "Κωδικός πρόσβασης"
+        }
+      },
+      "reconfigure": {
+        "title": "Επαναδιαμόρφωση CyberPower Cloud",
+        "description": "Ενημερώστε τα διαπιστευτήρια PowerPanel Cloud.",
+        "data": {
+          "email": "Email",
+          "password": "Κωδικός πρόσβασης"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "Σχεδόν έτοιμο!",
+        "description": "Η σύνδεση ολοκληρώθηκε. Εντοπισμένες συσκευές: **{devices}**.\n\n⚠️ **Σημαντικό:** Μην ξεχάσετε να ορίσετε την **Ονομαστική ισχύ UPS** (watts) στη σελίδα κάθε συσκευής στην ενότητα Διαμόρφωση. Ο αισθητήρας φορτίου θα εμφανίζει *Άγνωστο* μέχρι να ρυθμίσετε αυτή την τιμή.\n\nΤυπικές τιμές: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Ελέγξτε το datasheet (όχι VA).\n\nΠατήστε Υποβολή για ολοκλήρωση."
+      },
+      "reconfigure_reminder": {
+        "title": "Τα διαπιστευτήρια ενημερώθηκαν",
+        "description": "Η επαναδιαμόρφωση ολοκληρώθηκε. Συσκευές: **{devices}**.\n\n⚠️ **Υπενθύμιση:** Βεβαιωθείτε ότι η **Ονομαστική ισχύς UPS** είναι ακόμα σωστά ρυθμισμένη — ο αισθητήρας φορτίου εξαρτάται από αυτήν.\n\nΠατήστε Υποβολή."
+      }
+    },
+    "error": {
+      "invalid_auth": "Μη έγκυρο email ή κωδικός πρόσβασης",
+      "cannot_connect": "Αδυναμία σύνδεσης με το CyberPower Cloud",
+      "no_devices": "Δεν βρέθηκαν συσκευές UPS σε αυτόν τον λογαριασμό"
+    },
+    "abort": {
+      "already_configured": "Αυτός ο λογαριασμός έχει ήδη διαμορφωθεί",
+      "reauth_successful": "Ο επανέλεγχος ταυτότητας ολοκληρώθηκε",
+      "reconfigure_successful": "Η επαναδιαμόρφωση ολοκληρώθηκε"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Επιλογές CyberPower Cloud",
+        "data": {
+          "scan_interval": "Διάστημα ενημέρωσης (δευτερόλεπτα)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "Αποτυχία ελέγχου ταυτότητας CyberPower Cloud",
+      "description": "Ο έλεγχος ταυτότητας απέτυχε για τη συσκευή **{device}**. Η ανίχνευση σταμάτησε. Ελέγξτε τα διαπιστευτήρια και επανεκκινήστε."
+    },
+    "api_error": {
+      "title": "Σφάλμα CyberPower Cloud API",
+      "description": "Το API επέστρεψε σφάλματα επανειλημμένα για τη συσκευή **{device}**. Η ανίχνευση σταμάτησε. Ελέγξτε τη σύνδεση και επανεκκινήστε."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "Σε μπαταρία"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "Ονομαστική ισχύς UPS"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Τάση εισόδου"
+      },
+      "output_voltage": {
+        "name": "Τάση εξόδου"
+      },
+      "input_frequency": {
+        "name": "Συχνότητα εισόδου"
+      },
+      "output_frequency": {
+        "name": "Συχνότητα εξόδου"
+      },
+      "battery_capacity": {
+        "name": "Μπαταρία"
+      },
+      "battery_runtime": {
+        "name": "Χρόνος μπαταρίας"
+      },
+      "load": {
+        "name": "Φορτίο"
+      },
+      "battery_health": {
+        "name": "Υγεία μπαταρίας"
+      },
+      "ups_temperature": {
+        "name": "Θερμοκρασία UPS"
+      },
+      "environment_temperature": {
+        "name": "Θερμοκρασία περιβάλλοντος"
+      },
+      "environment_humidity": {
+        "name": "Υγρασία περιβάλλοντος"
+      },
+      "device_status": {
+        "name": "Κατάσταση"
+      },
+      "power_consumption": {
+        "name": "Κατανάλωση ισχύος"
+      },
+      "last_update": {
+        "name": "Τελευταία ενημέρωση"
+      }
+    }
+  }
+}

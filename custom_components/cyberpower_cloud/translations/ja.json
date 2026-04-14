@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "PowerPanel Cloud の認証情報を入力してください。",
+        "data": {
+          "email": "メールアドレス",
+          "password": "パスワード"
+        }
+      },
+      "reauth_confirm": {
+        "title": "CyberPower Cloud を再認証",
+        "description": "セッションが期限切れです。新しいパスワードを入力してください。",
+        "data": {
+          "password": "パスワード"
+        }
+      },
+      "reconfigure": {
+        "title": "CyberPower Cloud を再構成",
+        "description": "PowerPanel Cloud の認証情報を更新します。",
+        "data": {
+          "email": "メールアドレス",
+          "password": "パスワード"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "もうすぐ完了!",
+        "description": "ログインに成功しました。検出されたデバイス: **{devices}**。\n\n⚠️ **重要:** 各デバイスページの構成セクションで **UPS 定格電力** (ワット) を設定することを忘れないでください。この値を設定するまで、負荷 % センサーは *不明* と表示されます。\n\n典型的な値: OLS1000EA = 900 W、OLS1500EA = 1350 W、OLS2000EA = 1800 W、OLS3000EA = 2700 W。UPS のデータシートで正確なワット定格を確認してください (VA ではありません)。\n\n「送信」をクリックして設定を完了します。"
+      },
+      "reconfigure_reminder": {
+        "title": "認証情報が更新されました",
+        "description": "再構成に成功しました。デバイス: **{devices}**。\n\n⚠️ **リマインダー:** 各デバイスページの **UPS 定格電力** が正しく設定されていることを確認してください — 負荷 % センサーはこれに依存します。\n\n「送信」をクリックして変更を適用します。"
+      }
+    },
+    "error": {
+      "invalid_auth": "無効なメールアドレスまたはパスワード",
+      "cannot_connect": "CyberPower Cloud に接続できません",
+      "no_devices": "このアカウントに UPS デバイスが見つかりません"
+    },
+    "abort": {
+      "already_configured": "このアカウントは既に構成されています",
+      "reauth_successful": "再認証に成功しました",
+      "reconfigure_successful": "再構成に成功しました"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "CyberPower Cloud オプション",
+        "data": {
+          "scan_interval": "更新間隔 (秒)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "CyberPower Cloud 認証失敗",
+      "description": "デバイス **{device}** の認証に失敗しました。ポーリングを停止しました。認証情報を確認して Home Assistant を再起動してください。"
+    },
+    "api_error": {
+      "title": "CyberPower Cloud API エラー",
+      "description": "API がデバイス **{device}** に対して繰り返しエラーを返しました。ポーリングを停止しました。接続を確認して再起動してください。"
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "バッテリー駆動"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "UPS 定格電力"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "入力電圧"
+      },
+      "output_voltage": {
+        "name": "出力電圧"
+      },
+      "input_frequency": {
+        "name": "入力周波数"
+      },
+      "output_frequency": {
+        "name": "出力周波数"
+      },
+      "battery_capacity": {
+        "name": "バッテリー"
+      },
+      "battery_runtime": {
+        "name": "バッテリー残り時間"
+      },
+      "load": {
+        "name": "負荷"
+      },
+      "battery_health": {
+        "name": "バッテリー状態"
+      },
+      "ups_temperature": {
+        "name": "UPS 温度"
+      },
+      "environment_temperature": {
+        "name": "環境温度"
+      },
+      "environment_humidity": {
+        "name": "環境湿度"
+      },
+      "device_status": {
+        "name": "ステータス"
+      },
+      "power_consumption": {
+        "name": "消費電力"
+      },
+      "last_update": {
+        "name": "最終更新"
+      }
+    }
+  }
+}

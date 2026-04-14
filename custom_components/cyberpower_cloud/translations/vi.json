@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Nhập thông tin đăng nhập PowerPanel Cloud.",
+        "data": {
+          "email": "Email",
+          "password": "Mật khẩu"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Xác thực lại CyberPower Cloud",
+        "description": "Phiên đã hết hạn. Vui lòng nhập mật khẩu mới.",
+        "data": {
+          "password": "Mật khẩu"
+        }
+      },
+      "reconfigure": {
+        "title": "Cấu hình lại CyberPower Cloud",
+        "description": "Cập nhật thông tin đăng nhập PowerPanel Cloud.",
+        "data": {
+          "email": "Email",
+          "password": "Mật khẩu"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "Sắp xong!",
+        "description": "Đăng nhập thành công. Các thiết bị đã phát hiện: **{devices}**.\n\n⚠️ **Quan trọng:** Đừng quên đặt **Công suất định mức UPS** (watt) trên trang mỗi thiết bị trong phần Cấu hình. Cảm biến Tải % sẽ hiển thị *Không xác định* cho đến khi bạn cấu hình giá trị này.\n\nGiá trị điển hình: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Kiểm tra datasheet (không phải VA).\n\nNhấp vào Gửi để hoàn tất cài đặt."
+      },
+      "reconfigure_reminder": {
+        "title": "Thông tin đăng nhập đã cập nhật",
+        "description": "Cấu hình lại thành công. Thiết bị: **{devices}**.\n\n⚠️ **Nhắc nhở:** Đảm bảo **Công suất định mức UPS** vẫn được đặt đúng — cảm biến Tải % phụ thuộc vào nó.\n\nNhấp vào Gửi để áp dụng."
+      }
+    },
+    "error": {
+      "invalid_auth": "Email hoặc mật khẩu không hợp lệ",
+      "cannot_connect": "Không thể kết nối đến CyberPower Cloud",
+      "no_devices": "Không tìm thấy thiết bị UPS trên tài khoản này"
+    },
+    "abort": {
+      "already_configured": "Tài khoản này đã được cấu hình",
+      "reauth_successful": "Xác thực lại thành công",
+      "reconfigure_successful": "Cấu hình lại thành công"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Tùy chọn CyberPower Cloud",
+        "data": {
+          "scan_interval": "Khoảng thời gian cập nhật (giây)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "Xác thực CyberPower Cloud thất bại",
+      "description": "Xác thực thất bại cho thiết bị **{device}**. Đã dừng thăm dò. Vui lòng kiểm tra thông tin đăng nhập và khởi động lại Home Assistant."
+    },
+    "api_error": {
+      "title": "Lỗi API CyberPower Cloud",
+      "description": "API trả về lỗi nhiều lần liên tiếp cho thiết bị **{device}**. Đã dừng thăm dò. Kiểm tra kết nối và khởi động lại."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "Trên pin"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "Công suất định mức UPS"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Điện áp đầu vào"
+      },
+      "output_voltage": {
+        "name": "Điện áp đầu ra"
+      },
+      "input_frequency": {
+        "name": "Tần số đầu vào"
+      },
+      "output_frequency": {
+        "name": "Tần số đầu ra"
+      },
+      "battery_capacity": {
+        "name": "Pin"
+      },
+      "battery_runtime": {
+        "name": "Thời gian pin còn lại"
+      },
+      "load": {
+        "name": "Tải"
+      },
+      "battery_health": {
+        "name": "Tình trạng pin"
+      },
+      "ups_temperature": {
+        "name": "Nhiệt độ UPS"
+      },
+      "environment_temperature": {
+        "name": "Nhiệt độ môi trường"
+      },
+      "environment_humidity": {
+        "name": "Độ ẩm môi trường"
+      },
+      "device_status": {
+        "name": "Trạng thái"
+      },
+      "power_consumption": {
+        "name": "Tiêu thụ điện"
+      },
+      "last_update": {
+        "name": "Cập nhật cuối"
+      }
+    }
+  }
+}

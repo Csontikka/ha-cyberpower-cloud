@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Introduceți acreditările PowerPanel Cloud.",
+        "data": {
+          "email": "E-mail",
+          "password": "Parolă"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Reautentificare CyberPower Cloud",
+        "description": "Sesiunea a expirat. Introduceți noua parolă.",
+        "data": {
+          "password": "Parolă"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigurare CyberPower Cloud",
+        "description": "Actualizați acreditările PowerPanel Cloud.",
+        "data": {
+          "email": "E-mail",
+          "password": "Parolă"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "Aproape gata!",
+        "description": "Autentificare reușită. Dispozitive detectate: **{devices}**.\n\n⚠️ **Important:** Nu uitați să setați **Puterea Nominală UPS** (wați) pe pagina fiecărui dispozitiv în secțiunea Configurare. Senzorul Sarcină % va afișa *Necunoscut* până configurați această valoare.\n\nValori tipice: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Verificați fișa tehnică (nu VA).\n\nApăsați Trimite pentru a finaliza."
+      },
+      "reconfigure_reminder": {
+        "title": "Acreditări actualizate",
+        "description": "Reconfigurare reușită. Dispozitive: **{devices}**.\n\n⚠️ **Mementoriu:** Asigurați-vă că **Puterea Nominală UPS** este încă setată corect — senzorul Sarcină % depinde de ea.\n\nApăsați Trimite."
+      }
+    },
+    "error": {
+      "invalid_auth": "E-mail sau parolă incorecte",
+      "cannot_connect": "Nu se poate conecta la CyberPower Cloud",
+      "no_devices": "Nu s-au găsit dispozitive UPS pe acest cont"
+    },
+    "abort": {
+      "already_configured": "Acest cont este deja configurat",
+      "reauth_successful": "Reautentificare reușită",
+      "reconfigure_successful": "Reconfigurare reușită"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opțiuni CyberPower Cloud",
+        "data": {
+          "scan_interval": "Interval de actualizare (secunde)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "Autentificare CyberPower Cloud eșuată",
+      "description": "Autentificarea a eșuat pentru dispozitivul **{device}**. Sondarea oprită. Verificați acreditările și reporniți Home Assistant."
+    },
+    "api_error": {
+      "title": "Eroare API CyberPower Cloud",
+      "description": "API-ul a returnat erori repetate pentru dispozitivul **{device}**. Sondarea oprită. Verificați conexiunea și reporniți."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "Pe baterie"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "Puterea Nominală UPS"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Tensiune de intrare"
+      },
+      "output_voltage": {
+        "name": "Tensiune de ieșire"
+      },
+      "input_frequency": {
+        "name": "Frecvență de intrare"
+      },
+      "output_frequency": {
+        "name": "Frecvență de ieșire"
+      },
+      "battery_capacity": {
+        "name": "Baterie"
+      },
+      "battery_runtime": {
+        "name": "Autonomie rămasă"
+      },
+      "load": {
+        "name": "Sarcină"
+      },
+      "battery_health": {
+        "name": "Stare baterie"
+      },
+      "ups_temperature": {
+        "name": "Temperatură UPS"
+      },
+      "environment_temperature": {
+        "name": "Temperatură ambientală"
+      },
+      "environment_humidity": {
+        "name": "Umiditate ambientală"
+      },
+      "device_status": {
+        "name": "Stare"
+      },
+      "power_consumption": {
+        "name": "Consum de energie"
+      },
+      "last_update": {
+        "name": "Ultima actualizare"
+      }
+    }
+  }
+}

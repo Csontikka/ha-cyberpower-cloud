@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Geben Sie Ihre PowerPanel Cloud-Anmeldedaten ein.",
+        "data": {
+          "email": "E-Mail",
+          "password": "Passwort"
+        }
+      },
+      "reauth_confirm": {
+        "title": "CyberPower Cloud erneut authentifizieren",
+        "description": "Ihre Sitzung ist abgelaufen. Bitte geben Sie Ihr neues Passwort ein.",
+        "data": {
+          "password": "Passwort"
+        }
+      },
+      "reconfigure": {
+        "title": "CyberPower Cloud neu konfigurieren",
+        "description": "Aktualisieren Sie Ihre PowerPanel Cloud-Anmeldedaten.",
+        "data": {
+          "email": "E-Mail",
+          "password": "Passwort"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "Fast fertig!",
+        "description": "Anmeldung erfolgreich. Gefundene Geräte: **{devices}**.\n\n⚠️ **Wichtig:** Vergessen Sie nicht, die **USV-Nennleistung** (Watt) auf jeder Geräteseite im Bereich Konfiguration einzustellen. Der Last-%-Sensor zeigt *Unbekannt* an, bis Sie diesen Wert konfigurieren.\n\nTypische Werte: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Prüfen Sie das Datenblatt Ihres Modells (nicht VA).\n\nKlicken Sie auf Senden, um die Einrichtung abzuschließen."
+      },
+      "reconfigure_reminder": {
+        "title": "Anmeldedaten aktualisiert",
+        "description": "Neukonfiguration erfolgreich. Geräte: **{devices}**.\n\n⚠️ **Erinnerung:** Stellen Sie sicher, dass die **USV-Nennleistung** weiterhin korrekt eingestellt ist — der Last-%-Sensor hängt davon ab.\n\nKlicken Sie auf Senden."
+      }
+    },
+    "error": {
+      "invalid_auth": "Ungültige E-Mail oder Passwort",
+      "cannot_connect": "Verbindung zu CyberPower Cloud nicht möglich",
+      "no_devices": "Keine USV-Geräte in diesem Konto gefunden"
+    },
+    "abort": {
+      "already_configured": "Dieses Konto ist bereits konfiguriert",
+      "reauth_successful": "Erneute Authentifizierung erfolgreich",
+      "reconfigure_successful": "Neukonfiguration erfolgreich"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "CyberPower Cloud-Optionen",
+        "data": {
+          "scan_interval": "Aktualisierungsintervall (Sekunden)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "CyberPower Cloud-Authentifizierung fehlgeschlagen",
+      "description": "Authentifizierung fehlgeschlagen für Gerät **{device}**. Abfrage wurde gestoppt. Bitte Anmeldedaten prüfen und Home Assistant neu starten."
+    },
+    "api_error": {
+      "title": "CyberPower Cloud-API-Fehler",
+      "description": "Die API hat wiederholt Fehler für Gerät **{device}** zurückgegeben. Abfrage wurde gestoppt. Bitte Verbindung prüfen und neu starten."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "Auf Batterie"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "USV-Nennleistung"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Eingangsspannung"
+      },
+      "output_voltage": {
+        "name": "Ausgangsspannung"
+      },
+      "input_frequency": {
+        "name": "Eingangsfrequenz"
+      },
+      "output_frequency": {
+        "name": "Ausgangsfrequenz"
+      },
+      "battery_capacity": {
+        "name": "Batterie"
+      },
+      "battery_runtime": {
+        "name": "Restlaufzeit auf Batterie"
+      },
+      "load": {
+        "name": "Last"
+      },
+      "battery_health": {
+        "name": "Batteriezustand"
+      },
+      "ups_temperature": {
+        "name": "USV-Temperatur"
+      },
+      "environment_temperature": {
+        "name": "Umgebungstemperatur"
+      },
+      "environment_humidity": {
+        "name": "Umgebungsfeuchtigkeit"
+      },
+      "device_status": {
+        "name": "Status"
+      },
+      "power_consumption": {
+        "name": "Stromverbrauch"
+      },
+      "last_update": {
+        "name": "Letzte Aktualisierung"
+      }
+    }
+  }
+}

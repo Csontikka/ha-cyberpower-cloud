@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Adja meg a PowerPanel Cloud fiók adatait.",
+        "data": {
+          "email": "E-mail",
+          "password": "Jelszó"
+        }
+      },
+      "reauth_confirm": {
+        "title": "CyberPower Cloud újrahitelesítés",
+        "description": "A munkamenet lejárt. Adja meg az új jelszavát.",
+        "data": {
+          "password": "Jelszó"
+        }
+      },
+      "reconfigure": {
+        "title": "CyberPower Cloud újrakonfigurálása",
+        "description": "Frissítse a PowerPanel Cloud adatait.",
+        "data": {
+          "email": "E-mail",
+          "password": "Jelszó"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "Majdnem kész!",
+        "description": "Sikeres bejelentkezés. Talált eszközök: **{devices}**.\n\n⚠️ **Fontos:** Ne felejtse el beállítani az **UPS Névleges Teljesítményt** (watt) minden eszköz oldalán a Konfiguráció szekcióban. A Terhelés % szenzor *Ismeretlen* értéket fog mutatni, amíg nem konfigurálja ezt az értéket.\n\nTipikus értékek: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Ellenőrizze a UPS adatlapját a pontos watt értékért (nem VA).\n\nKattintson a Küldés gombra a befejezéshez."
+      },
+      "reconfigure_reminder": {
+        "title": "Adatok frissítve",
+        "description": "Újrakonfigurálás sikeres. Eszközök: **{devices}**.\n\n⚠️ **Emlékeztető:** Győződjön meg róla, hogy az **UPS Névleges Teljesítmény** továbbra is helyesen van beállítva — a Terhelés % szenzor ettől függ.\n\nKattintson a Küldés gombra."
+      }
+    },
+    "error": {
+      "invalid_auth": "Érvénytelen e-mail vagy jelszó",
+      "cannot_connect": "Nem sikerült csatlakozni a CyberPower Cloudhoz",
+      "no_devices": "Nem található UPS eszköz ezen a fiókon"
+    },
+    "abort": {
+      "already_configured": "Ez a fiók már konfigurálva van",
+      "reauth_successful": "Újrahitelesítés sikeres",
+      "reconfigure_successful": "Újrakonfigurálás sikeres"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "CyberPower Cloud beállítások",
+        "data": {
+          "scan_interval": "Frissítési intervallum (másodperc)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "CyberPower Cloud hitelesítés sikertelen",
+      "description": "A hitelesítés sikertelen a **{device}** eszközhöz. A lekérdezés leállt. Ellenőrizze az adatokat és indítsa újra a Home Assistantot."
+    },
+    "api_error": {
+      "title": "CyberPower Cloud API hiba",
+      "description": "Az API többször is hibát adott vissza a **{device}** eszköznél. A lekérdezés leállt. Ellenőrizze a kapcsolatot és indítsa újra."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "Akkumulátoron"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "UPS Névleges Teljesítmény"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Bemeneti feszültség"
+      },
+      "output_voltage": {
+        "name": "Kimeneti feszültség"
+      },
+      "input_frequency": {
+        "name": "Bemeneti frekvencia"
+      },
+      "output_frequency": {
+        "name": "Kimeneti frekvencia"
+      },
+      "battery_capacity": {
+        "name": "Akkumulátor"
+      },
+      "battery_runtime": {
+        "name": "Hátralévő akkumulátor idő"
+      },
+      "load": {
+        "name": "Terhelés"
+      },
+      "battery_health": {
+        "name": "Akkumulátor állapot"
+      },
+      "ups_temperature": {
+        "name": "UPS hőmérséklet"
+      },
+      "environment_temperature": {
+        "name": "Környezeti hőmérséklet"
+      },
+      "environment_humidity": {
+        "name": "Környezeti páratartalom"
+      },
+      "device_status": {
+        "name": "Állapot"
+      },
+      "power_consumption": {
+        "name": "Teljesítményfogyasztás"
+      },
+      "last_update": {
+        "name": "Utolsó frissítés"
+      }
+    }
+  }
+}

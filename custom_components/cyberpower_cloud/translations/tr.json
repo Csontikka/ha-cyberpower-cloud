@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "PowerPanel Cloud kimlik bilgilerinizi girin.",
+        "data": {
+          "email": "E-posta",
+          "password": "Parola"
+        }
+      },
+      "reauth_confirm": {
+        "title": "CyberPower Cloud yeniden doğrulama",
+        "description": "Oturumunuzun süresi doldu. Yeni parolanızı girin.",
+        "data": {
+          "password": "Parola"
+        }
+      },
+      "reconfigure": {
+        "title": "CyberPower Cloud yeniden yapılandırma",
+        "description": "PowerPanel Cloud kimlik bilgilerinizi güncelleyin.",
+        "data": {
+          "email": "E-posta",
+          "password": "Parola"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "Neredeyse bitti!",
+        "description": "Giriş başarılı. Bulunan cihazlar: **{devices}**.\n\n⚠️ **Önemli:** Her cihaz sayfasında Yapılandırma bölümü altında **UPS Nominal Güç** (watt) ayarını yapmayı unutmayın. Yük % sensörü bu değeri yapılandırana kadar *Bilinmiyor* gösterecektir.\n\nTipik değerler: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Kesin watt değeri için veri sayfasını kontrol edin (VA değil).\n\nKurulumu tamamlamak için Gönder'e tıklayın."
+      },
+      "reconfigure_reminder": {
+        "title": "Kimlik bilgileri güncellendi",
+        "description": "Yeniden yapılandırma başarılı. Cihazlar: **{devices}**.\n\n⚠️ **Hatırlatma:** **UPS Nominal Güç** değerinin hâlâ doğru ayarlandığından emin olun — Yük % sensörü buna bağlıdır.\n\nDeğişiklikleri uygulamak için Gönder'e tıklayın."
+      }
+    },
+    "error": {
+      "invalid_auth": "Geçersiz e-posta veya parola",
+      "cannot_connect": "CyberPower Cloud'a bağlanılamıyor",
+      "no_devices": "Bu hesapta UPS cihazı bulunamadı"
+    },
+    "abort": {
+      "already_configured": "Bu hesap zaten yapılandırılmış",
+      "reauth_successful": "Yeniden doğrulama başarılı",
+      "reconfigure_successful": "Yeniden yapılandırma başarılı"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "CyberPower Cloud Seçenekleri",
+        "data": {
+          "scan_interval": "Güncelleme aralığı (saniye)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "CyberPower Cloud kimlik doğrulama başarısız",
+      "description": "**{device}** cihazı için kimlik doğrulama başarısız. Yoklama durduruldu. Kimlik bilgilerini kontrol edin ve Home Assistant'ı yeniden başlatın."
+    },
+    "api_error": {
+      "title": "CyberPower Cloud API hatası",
+      "description": "API, **{device}** cihazı için arka arkaya hata döndürdü. Yoklama durduruldu. Bağlantıyı kontrol edin ve yeniden başlatın."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "Batarya ile"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "UPS Nominal Güç"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Giriş voltajı"
+      },
+      "output_voltage": {
+        "name": "Çıkış voltajı"
+      },
+      "input_frequency": {
+        "name": "Giriş frekansı"
+      },
+      "output_frequency": {
+        "name": "Çıkış frekansı"
+      },
+      "battery_capacity": {
+        "name": "Batarya"
+      },
+      "battery_runtime": {
+        "name": "Kalan batarya süresi"
+      },
+      "load": {
+        "name": "Yük"
+      },
+      "battery_health": {
+        "name": "Batarya durumu"
+      },
+      "ups_temperature": {
+        "name": "UPS sıcaklığı"
+      },
+      "environment_temperature": {
+        "name": "Ortam sıcaklığı"
+      },
+      "environment_humidity": {
+        "name": "Ortam nemi"
+      },
+      "device_status": {
+        "name": "Durum"
+      },
+      "power_consumption": {
+        "name": "Güç tüketimi"
+      },
+      "last_update": {
+        "name": "Son güncelleme"
+      }
+    }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Syötä PowerPanel Cloud -tunnuksesi.",
+        "data": {
+          "email": "Sähköposti",
+          "password": "Salasana"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Todenna CyberPower Cloud uudelleen",
+        "description": "Istunto on vanhentunut. Syötä uusi salasana.",
+        "data": {
+          "password": "Salasana"
+        }
+      },
+      "reconfigure": {
+        "title": "Määritä CyberPower Cloud uudelleen",
+        "description": "Päivitä PowerPanel Cloud -tunnuksesi.",
+        "data": {
+          "email": "Sähköposti",
+          "password": "Salasana"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "Melkein valmis!",
+        "description": "Kirjautuminen onnistui. Löydetyt laitteet: **{devices}**.\n\n⚠️ **Tärkeää:** Muista asettaa **UPS nimellisteho** (watteina) jokaisen laitteen sivulla Konfiguraatio-osiossa. Kuormitus%-anturi näyttää *Tuntematon*, kunnes asetat tämän arvon.\n\nTyypilliset arvot: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Tarkista tekniset tiedot (ei VA).\n\nPaina Lähetä viimeistelläksesi."
+      },
+      "reconfigure_reminder": {
+        "title": "Tunnukset päivitetty",
+        "description": "Uudelleenmääritys onnistui. Laitteet: **{devices}**.\n\n⚠️ **Muistutus:** Varmista, että **UPS nimellisteho** on edelleen asetettu oikein — Kuormitus%-anturi riippuu siitä.\n\nPaina Lähetä."
+      }
+    },
+    "error": {
+      "invalid_auth": "Virheellinen sähköposti tai salasana",
+      "cannot_connect": "Yhteys CyberPower Cloudiin epäonnistui",
+      "no_devices": "Tältä tililtä ei löytynyt UPS-laitteita"
+    },
+    "abort": {
+      "already_configured": "Tämä tili on jo määritetty",
+      "reauth_successful": "Uudelleentodennus onnistui",
+      "reconfigure_successful": "Uudelleenmääritys onnistui"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "CyberPower Cloud -asetukset",
+        "data": {
+          "scan_interval": "Päivitysväli (sekuntia)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "CyberPower Cloud -todennus epäonnistui",
+      "description": "Todennus epäonnistui laitteelle **{device}**. Pollaus pysäytettiin. Tarkista tunnukset ja käynnistä Home Assistant uudelleen."
+    },
+    "api_error": {
+      "title": "CyberPower Cloud API -virhe",
+      "description": "API palautti virheitä toistuvasti laitteelle **{device}**. Pollaus pysäytettiin. Tarkista yhteys ja käynnistä uudelleen."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "Akulla"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "UPS nimellisteho"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Tulojännite"
+      },
+      "output_voltage": {
+        "name": "Lähtöjännite"
+      },
+      "input_frequency": {
+        "name": "Tulotaajuus"
+      },
+      "output_frequency": {
+        "name": "Lähtötaajuus"
+      },
+      "battery_capacity": {
+        "name": "Akku"
+      },
+      "battery_runtime": {
+        "name": "Jäljellä oleva aika akulla"
+      },
+      "load": {
+        "name": "Kuormitus"
+      },
+      "battery_health": {
+        "name": "Akun kunto"
+      },
+      "ups_temperature": {
+        "name": "UPS-lämpötila"
+      },
+      "environment_temperature": {
+        "name": "Ympäristön lämpötila"
+      },
+      "environment_humidity": {
+        "name": "Ympäristön kosteus"
+      },
+      "device_status": {
+        "name": "Tila"
+      },
+      "power_consumption": {
+        "name": "Tehonkulutus"
+      },
+      "last_update": {
+        "name": "Viimeisin päivitys"
+      }
+    }
+  }
+}

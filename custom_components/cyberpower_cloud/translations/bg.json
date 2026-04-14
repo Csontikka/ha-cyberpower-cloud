@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Въведете идентификационните си данни за PowerPanel Cloud.",
+        "data": {
+          "email": "Имейл",
+          "password": "Парола"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Повторна автентикация на CyberPower Cloud",
+        "description": "Сесията изтече. Моля, въведете новата си парола.",
+        "data": {
+          "password": "Парола"
+        }
+      },
+      "reconfigure": {
+        "title": "Преконфигуриране на CyberPower Cloud",
+        "description": "Актуализирайте данните за PowerPanel Cloud.",
+        "data": {
+          "email": "Имейл",
+          "password": "Парола"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "Почти готово!",
+        "description": "Успешен вход. Открити устройства: **{devices}**.\n\n⚠️ **Важно:** Не забравяйте да зададете **Номинална мощност на UPS** (ватове) на всяка страница на устройство в раздел Конфигурация. Сензорът за натоварване ще показва *Неизвестно*, докато не конфигурирате тази стойност.\n\nТипични стойности: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Проверете спецификацията за точната стойност (не VA).\n\nНатиснете Изпрати за завършване."
+      },
+      "reconfigure_reminder": {
+        "title": "Данните са актуализирани",
+        "description": "Преконфигурирането е успешно. Открити устройства: **{devices}**.\n\n⚠️ **Напомняне:** Уверете се, че **Номиналната мощност на UPS** е зададена правилно — сензорът за натоварване зависи от нея.\n\nНатиснете Изпрати."
+      }
+    },
+    "error": {
+      "invalid_auth": "Невалиден имейл или парола",
+      "cannot_connect": "Неуспешна връзка с CyberPower Cloud",
+      "no_devices": "Не са намерени UPS устройства за този акаунт"
+    },
+    "abort": {
+      "already_configured": "Този акаунт вече е конфигуриран",
+      "reauth_successful": "Повторната автентикация е успешна",
+      "reconfigure_successful": "Преконфигурирането е успешно"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Настройки на CyberPower Cloud",
+        "data": {
+          "scan_interval": "Интервал на обновяване (секунди)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "Неуспешна автентикация на CyberPower Cloud",
+      "description": "Автентикацията е неуспешна за устройство **{device}**. Проверката е спряна. Моля, проверете данните и рестартирайте Home Assistant."
+    },
+    "api_error": {
+      "title": "Грешка на CyberPower Cloud API",
+      "description": "CyberPower Cloud API върна грешки няколко пъти подред за устройство **{device}**. Проверката е спряна. Моля, проверете връзката и рестартирайте."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "На батерия"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "Номинална мощност на UPS"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Входно напрежение"
+      },
+      "output_voltage": {
+        "name": "Изходно напрежение"
+      },
+      "input_frequency": {
+        "name": "Входна честота"
+      },
+      "output_frequency": {
+        "name": "Изходна честота"
+      },
+      "battery_capacity": {
+        "name": "Батерия"
+      },
+      "battery_runtime": {
+        "name": "Оставащо време на батерия"
+      },
+      "load": {
+        "name": "Натоварване"
+      },
+      "battery_health": {
+        "name": "Здраве на батерията"
+      },
+      "ups_temperature": {
+        "name": "Температура на UPS"
+      },
+      "environment_temperature": {
+        "name": "Температура на средата"
+      },
+      "environment_humidity": {
+        "name": "Влажност на средата"
+      },
+      "device_status": {
+        "name": "Състояние"
+      },
+      "power_consumption": {
+        "name": "Консумация"
+      },
+      "last_update": {
+        "name": "Последно обновяване"
+      }
+    }
+  }
+}

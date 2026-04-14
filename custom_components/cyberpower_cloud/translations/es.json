@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Introduzca sus credenciales de PowerPanel Cloud.",
+        "data": {
+          "email": "Correo electrónico",
+          "password": "Contraseña"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Volver a autenticar CyberPower Cloud",
+        "description": "La sesión ha expirado. Introduzca su nueva contraseña.",
+        "data": {
+          "password": "Contraseña"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigurar CyberPower Cloud",
+        "description": "Actualice sus credenciales de PowerPanel Cloud.",
+        "data": {
+          "email": "Correo electrónico",
+          "password": "Contraseña"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "¡Casi listo!",
+        "description": "Inicio de sesión correcto. Dispositivos detectados: **{devices}**.\n\n⚠️ **Importante:** No olvide configurar la **Potencia Nominal del SAI** (vatios) en la página de cada dispositivo en la sección Configuración. El sensor de Carga % mostrará *Desconocido* hasta que configure este valor.\n\nValores típicos: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Consulte la hoja de datos (no VA).\n\nHaga clic en Enviar para finalizar."
+      },
+      "reconfigure_reminder": {
+        "title": "Credenciales actualizadas",
+        "description": "Reconfiguración correcta. Dispositivos: **{devices}**.\n\n⚠️ **Recordatorio:** Asegúrese de que la **Potencia Nominal del SAI** siga configurada correctamente — el sensor de Carga % depende de ella.\n\nHaga clic en Enviar."
+      }
+    },
+    "error": {
+      "invalid_auth": "Correo electrónico o contraseña no válidos",
+      "cannot_connect": "No se puede conectar con CyberPower Cloud",
+      "no_devices": "No se encontraron dispositivos SAI en esta cuenta"
+    },
+    "abort": {
+      "already_configured": "Esta cuenta ya está configurada",
+      "reauth_successful": "Reautenticación exitosa",
+      "reconfigure_successful": "Reconfiguración exitosa"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opciones de CyberPower Cloud",
+        "data": {
+          "scan_interval": "Intervalo de actualización (segundos)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "Autenticación fallida de CyberPower Cloud",
+      "description": "Autenticación fallida para el dispositivo **{device}**. Se detuvo el sondeo. Compruebe las credenciales y reinicie Home Assistant."
+    },
+    "api_error": {
+      "title": "Error de API de CyberPower Cloud",
+      "description": "La API devolvió errores repetidamente para el dispositivo **{device}**. Se detuvo el sondeo. Compruebe la conexión y reinicie."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "En batería"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "Potencia Nominal del SAI"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Tensión de entrada"
+      },
+      "output_voltage": {
+        "name": "Tensión de salida"
+      },
+      "input_frequency": {
+        "name": "Frecuencia de entrada"
+      },
+      "output_frequency": {
+        "name": "Frecuencia de salida"
+      },
+      "battery_capacity": {
+        "name": "Batería"
+      },
+      "battery_runtime": {
+        "name": "Autonomía restante"
+      },
+      "load": {
+        "name": "Carga"
+      },
+      "battery_health": {
+        "name": "Salud de la batería"
+      },
+      "ups_temperature": {
+        "name": "Temperatura del SAI"
+      },
+      "environment_temperature": {
+        "name": "Temperatura ambiente"
+      },
+      "environment_humidity": {
+        "name": "Humedad ambiente"
+      },
+      "device_status": {
+        "name": "Estado"
+      },
+      "power_consumption": {
+        "name": "Consumo"
+      },
+      "last_update": {
+        "name": "Última actualización"
+      }
+    }
+  }
+}

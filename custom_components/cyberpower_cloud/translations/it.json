@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Inserisci le credenziali PowerPanel Cloud.",
+        "data": {
+          "email": "E-mail",
+          "password": "Password"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Ri-autentica CyberPower Cloud",
+        "description": "La sessione è scaduta. Inserisci la nuova password.",
+        "data": {
+          "password": "Password"
+        }
+      },
+      "reconfigure": {
+        "title": "Riconfigura CyberPower Cloud",
+        "description": "Aggiorna le credenziali PowerPanel Cloud.",
+        "data": {
+          "email": "E-mail",
+          "password": "Password"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "Quasi fatto!",
+        "description": "Accesso riuscito. Dispositivi rilevati: **{devices}**.\n\n⚠️ **Importante:** Non dimenticare di impostare la **Potenza Nominale UPS** (watt) nella pagina di ogni dispositivo nella sezione Configurazione. Il sensore Carico % mostrerà *Sconosciuto* finché non configuri questo valore.\n\nValori tipici: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Consulta la scheda tecnica (non VA).\n\nClicca su Invia per terminare."
+      },
+      "reconfigure_reminder": {
+        "title": "Credenziali aggiornate",
+        "description": "Riconfigurazione riuscita. Dispositivi: **{devices}**.\n\n⚠️ **Promemoria:** Verifica che la **Potenza Nominale UPS** sia ancora impostata correttamente — il sensore Carico % dipende da essa.\n\nClicca su Invia."
+      }
+    },
+    "error": {
+      "invalid_auth": "E-mail o password non validi",
+      "cannot_connect": "Impossibile connettersi a CyberPower Cloud",
+      "no_devices": "Nessun dispositivo UPS trovato su questo account"
+    },
+    "abort": {
+      "already_configured": "Questo account è già configurato",
+      "reauth_successful": "Ri-autenticazione riuscita",
+      "reconfigure_successful": "Riconfigurazione riuscita"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opzioni CyberPower Cloud",
+        "data": {
+          "scan_interval": "Intervallo di aggiornamento (secondi)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "Autenticazione CyberPower Cloud fallita",
+      "description": "Autenticazione fallita per il dispositivo **{device}**. Il polling è stato interrotto. Controlla le credenziali e riavvia Home Assistant."
+    },
+    "api_error": {
+      "title": "Errore API CyberPower Cloud",
+      "description": "L'API ha restituito errori ripetuti per il dispositivo **{device}**. Il polling è stato interrotto. Controlla la connessione e riavvia."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "A batteria"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "Potenza Nominale UPS"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Tensione d'ingresso"
+      },
+      "output_voltage": {
+        "name": "Tensione d'uscita"
+      },
+      "input_frequency": {
+        "name": "Frequenza d'ingresso"
+      },
+      "output_frequency": {
+        "name": "Frequenza d'uscita"
+      },
+      "battery_capacity": {
+        "name": "Batteria"
+      },
+      "battery_runtime": {
+        "name": "Autonomia residua"
+      },
+      "load": {
+        "name": "Carico"
+      },
+      "battery_health": {
+        "name": "Salute batteria"
+      },
+      "ups_temperature": {
+        "name": "Temperatura UPS"
+      },
+      "environment_temperature": {
+        "name": "Temperatura ambiente"
+      },
+      "environment_humidity": {
+        "name": "Umidità ambiente"
+      },
+      "device_status": {
+        "name": "Stato"
+      },
+      "power_consumption": {
+        "name": "Consumo"
+      },
+      "last_update": {
+        "name": "Ultimo aggiornamento"
+      }
+    }
+  }
+}

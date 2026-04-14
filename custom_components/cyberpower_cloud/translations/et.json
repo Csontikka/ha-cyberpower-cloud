@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Sisestage oma PowerPanel Cloud mandaadid.",
+        "data": {
+          "email": "E-post",
+          "password": "Parool"
+        }
+      },
+      "reauth_confirm": {
+        "title": "CyberPower Cloud uuesti autentimine",
+        "description": "Sessioon on aegunud. Sisestage uus parool.",
+        "data": {
+          "password": "Parool"
+        }
+      },
+      "reconfigure": {
+        "title": "CyberPower Cloud ümberkonfigureerimine",
+        "description": "Uuendage PowerPanel Cloud mandaate.",
+        "data": {
+          "email": "E-post",
+          "password": "Parool"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "Peaaegu valmis!",
+        "description": "Sisselogimine õnnestus. Leitud seadmed: **{devices}**.\n\n⚠️ **Oluline:** Ärge unustage seadistada **UPS nimivõimsus** (vattides) iga seadme lehel jaotises Konfiguratsioon. Koormuse andur näitab *Teadmata* kuni selle väärtuse seadistamiseni.\n\nTüüpilised väärtused: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Kontrollige andmelehte (mitte VA).\n\nVajutage Saada lõpetamiseks."
+      },
+      "reconfigure_reminder": {
+        "title": "Mandaadid uuendatud",
+        "description": "Ümberkonfigureerimine õnnestus. Seadmed: **{devices}**.\n\n⚠️ **Meeldetuletus:** Veenduge, et **UPS nimivõimsus** on endiselt õigesti seadistatud — koormuse andur sõltub sellest.\n\nVajutage Saada."
+      }
+    },
+    "error": {
+      "invalid_auth": "Vale e-post või parool",
+      "cannot_connect": "Ei saa ühendust CyberPower Cloudiga",
+      "no_devices": "Selles kontos UPS-seadmeid ei leitud"
+    },
+    "abort": {
+      "already_configured": "See konto on juba konfigureeritud",
+      "reauth_successful": "Uuesti autentimine õnnestus",
+      "reconfigure_successful": "Ümberkonfigureerimine õnnestus"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "CyberPower Cloudi seaded",
+        "data": {
+          "scan_interval": "Uuendamise intervall (sekundites)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "CyberPower Cloudi autentimine nurjus",
+      "description": "Autentimine nurjus seadme **{device}** jaoks. Pollimine peatati. Kontrollige mandaate ja taaskäivitage Home Assistant."
+    },
+    "api_error": {
+      "title": "CyberPower Cloudi API viga",
+      "description": "API tagastas vigu korduvalt seadmele **{device}**. Pollimine peatati. Kontrollige ühendust ja taaskäivitage."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "Akul"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "UPS nimivõimsus"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Sisendpinge"
+      },
+      "output_voltage": {
+        "name": "Väljundpinge"
+      },
+      "input_frequency": {
+        "name": "Sisendsagedus"
+      },
+      "output_frequency": {
+        "name": "Väljundsagedus"
+      },
+      "battery_capacity": {
+        "name": "Aku"
+      },
+      "battery_runtime": {
+        "name": "Aku tööaeg"
+      },
+      "load": {
+        "name": "Koormus"
+      },
+      "battery_health": {
+        "name": "Aku seisukord"
+      },
+      "ups_temperature": {
+        "name": "UPS temperatuur"
+      },
+      "environment_temperature": {
+        "name": "Keskkonna temperatuur"
+      },
+      "environment_humidity": {
+        "name": "Keskkonna niiskus"
+      },
+      "device_status": {
+        "name": "Olek"
+      },
+      "power_consumption": {
+        "name": "Võimsuse tarbimine"
+      },
+      "last_update": {
+        "name": "Viimane uuendus"
+      }
+    }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Zadejte přihlašovací údaje pro PowerPanel Cloud.",
+        "data": {
+          "email": "E-mail",
+          "password": "Heslo"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Nové ověření CyberPower Cloud",
+        "description": "Relace vypršela. Zadejte prosím nové heslo.",
+        "data": {
+          "password": "Heslo"
+        }
+      },
+      "reconfigure": {
+        "title": "Překonfigurovat CyberPower Cloud",
+        "description": "Aktualizujte přihlašovací údaje PowerPanel Cloud.",
+        "data": {
+          "email": "E-mail",
+          "password": "Heslo"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "Téměř hotovo!",
+        "description": "Přihlášení úspěšné. Nalezená zařízení: **{devices}**.\n\n⚠️ **Důležité:** Nezapomeňte nastavit **Jmenovitý výkon UPS** (watty) na stránce každého zařízení v sekci Konfigurace. Senzor zátěže bude zobrazovat *Neznámé*, dokud tuto hodnotu nenastavíte.\n\nTypické hodnoty: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Zkontrolujte datasheet (ne VA).\n\nKlikněte na Odeslat pro dokončení."
+      },
+      "reconfigure_reminder": {
+        "title": "Údaje aktualizovány",
+        "description": "Překonfigurování úspěšné. Zařízení: **{devices}**.\n\n⚠️ **Připomenutí:** Ujistěte se, že **Jmenovitý výkon UPS** je stále správně nastaven — senzor zátěže na něm závisí.\n\nKlikněte na Odeslat."
+      }
+    },
+    "error": {
+      "invalid_auth": "Neplatný e-mail nebo heslo",
+      "cannot_connect": "Nelze se připojit k CyberPower Cloud",
+      "no_devices": "V tomto účtu nebyla nalezena žádná UPS"
+    },
+    "abort": {
+      "already_configured": "Tento účet je již nakonfigurován",
+      "reauth_successful": "Opětovné ověření úspěšné",
+      "reconfigure_successful": "Překonfigurování úspěšné"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Možnosti CyberPower Cloud",
+        "data": {
+          "scan_interval": "Interval aktualizace (sekundy)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "Selhalo ověření CyberPower Cloud",
+      "description": "Ověření selhalo pro zařízení **{device}**. Dotazování bylo zastaveno. Zkontrolujte údaje a restartujte Home Assistant."
+    },
+    "api_error": {
+      "title": "Chyba API CyberPower Cloud",
+      "description": "API vrátilo chyby opakovaně pro zařízení **{device}**. Dotazování bylo zastaveno. Zkontrolujte připojení a restartujte."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "Na baterii"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "Jmenovitý výkon UPS"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Vstupní napětí"
+      },
+      "output_voltage": {
+        "name": "Výstupní napětí"
+      },
+      "input_frequency": {
+        "name": "Vstupní frekvence"
+      },
+      "output_frequency": {
+        "name": "Výstupní frekvence"
+      },
+      "battery_capacity": {
+        "name": "Baterie"
+      },
+      "battery_runtime": {
+        "name": "Zbývající čas na baterii"
+      },
+      "load": {
+        "name": "Zatížení"
+      },
+      "battery_health": {
+        "name": "Stav baterie"
+      },
+      "ups_temperature": {
+        "name": "Teplota UPS"
+      },
+      "environment_temperature": {
+        "name": "Teplota prostředí"
+      },
+      "environment_humidity": {
+        "name": "Vlhkost prostředí"
+      },
+      "device_status": {
+        "name": "Stav"
+      },
+      "power_consumption": {
+        "name": "Spotřeba"
+      },
+      "last_update": {
+        "name": "Poslední aktualizace"
+      }
+    }
+  }
+}

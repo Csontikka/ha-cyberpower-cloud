@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Voer uw PowerPanel Cloud-inloggegevens in.",
+        "data": {
+          "email": "E-mail",
+          "password": "Wachtwoord"
+        }
+      },
+      "reauth_confirm": {
+        "title": "CyberPower Cloud opnieuw verifiëren",
+        "description": "Uw sessie is verlopen. Voer uw nieuwe wachtwoord in.",
+        "data": {
+          "password": "Wachtwoord"
+        }
+      },
+      "reconfigure": {
+        "title": "CyberPower Cloud opnieuw configureren",
+        "description": "Werk uw PowerPanel Cloud-inloggegevens bij.",
+        "data": {
+          "email": "E-mail",
+          "password": "Wachtwoord"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "Bijna klaar!",
+        "description": "Inloggen gelukt. Gevonden apparaten: **{devices}**.\n\n⚠️ **Belangrijk:** Vergeet niet om het **UPS Nominaal Vermogen** (watts) in te stellen op elke apparaatpagina in de sectie Configuratie. De Belasting %-sensor toont *Onbekend* totdat u deze waarde configureert.\n\nTypische waarden: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Controleer het datablad (geen VA).\n\nKlik op Verzenden om te voltooien."
+      },
+      "reconfigure_reminder": {
+        "title": "Inloggegevens bijgewerkt",
+        "description": "Herconfiguratie gelukt. Apparaten: **{devices}**.\n\n⚠️ **Herinnering:** Zorg dat het **UPS Nominaal Vermogen** nog steeds correct is ingesteld — de Belasting %-sensor hangt ervan af.\n\nKlik op Verzenden."
+      }
+    },
+    "error": {
+      "invalid_auth": "Ongeldig e-mailadres of wachtwoord",
+      "cannot_connect": "Kan geen verbinding maken met CyberPower Cloud",
+      "no_devices": "Geen UPS-apparaten gevonden op dit account"
+    },
+    "abort": {
+      "already_configured": "Dit account is al geconfigureerd",
+      "reauth_successful": "Herverificatie geslaagd",
+      "reconfigure_successful": "Herconfiguratie geslaagd"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "CyberPower Cloud-opties",
+        "data": {
+          "scan_interval": "Update-interval (seconden)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "CyberPower Cloud-authenticatie mislukt",
+      "description": "Authenticatie mislukt voor apparaat **{device}**. Polling is gestopt. Controleer de inloggegevens en herstart Home Assistant."
+    },
+    "api_error": {
+      "title": "CyberPower Cloud API-fout",
+      "description": "De API gaf herhaaldelijk fouten voor apparaat **{device}**. Polling is gestopt. Controleer de verbinding en herstart."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "Op batterij"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "UPS Nominaal Vermogen"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Ingangsspanning"
+      },
+      "output_voltage": {
+        "name": "Uitgangsspanning"
+      },
+      "input_frequency": {
+        "name": "Ingangsfrequentie"
+      },
+      "output_frequency": {
+        "name": "Uitgangsfrequentie"
+      },
+      "battery_capacity": {
+        "name": "Batterij"
+      },
+      "battery_runtime": {
+        "name": "Resterende batterijtijd"
+      },
+      "load": {
+        "name": "Belasting"
+      },
+      "battery_health": {
+        "name": "Batterijgezondheid"
+      },
+      "ups_temperature": {
+        "name": "UPS-temperatuur"
+      },
+      "environment_temperature": {
+        "name": "Omgevingstemperatuur"
+      },
+      "environment_humidity": {
+        "name": "Omgevingsvochtigheid"
+      },
+      "device_status": {
+        "name": "Status"
+      },
+      "power_consumption": {
+        "name": "Stroomverbruik"
+      },
+      "last_update": {
+        "name": "Laatste update"
+      }
+    }
+  }
+}

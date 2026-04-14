@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Introduïu les credencials de PowerPanel Cloud.",
+        "data": {
+          "email": "Correu electrònic",
+          "password": "Contrasenya"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Torna a autenticar CyberPower Cloud",
+        "description": "La sessió ha expirat. Introduïu la nova contrasenya.",
+        "data": {
+          "password": "Contrasenya"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigura CyberPower Cloud",
+        "description": "Actualitzeu les credencials de PowerPanel Cloud.",
+        "data": {
+          "email": "Correu electrònic",
+          "password": "Contrasenya"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "Gairebé fet!",
+        "description": "Inici de sessió correcte. Dispositius descoberts: **{devices}**.\n\n⚠️ **Important:** No oblideu configurar la **Potència nominal del SAI** (watts) a la pàgina de cada dispositiu a la secció Configuració. El sensor de càrrega mostrarà *Desconegut* fins que no configureu aquest valor.\n\nValors típics: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Consulteu la fitxa tècnica (no VA).\n\nFeu clic a Envia per acabar."
+      },
+      "reconfigure_reminder": {
+        "title": "Credencials actualitzades",
+        "description": "Reconfiguració correcta. Dispositius: **{devices}**.\n\n⚠️ **Recordatori:** Assegureu-vos que la **Potència nominal del SAI** segueix configurada correctament — el sensor de càrrega en depèn.\n\nFeu clic a Envia per aplicar."
+      }
+    },
+    "error": {
+      "invalid_auth": "Correu electrònic o contrasenya no vàlids",
+      "cannot_connect": "No es pot connectar amb CyberPower Cloud",
+      "no_devices": "No s'han trobat dispositius SAI en aquest compte"
+    },
+    "abort": {
+      "already_configured": "Aquest compte ja està configurat",
+      "reauth_successful": "Reautenticació correcta",
+      "reconfigure_successful": "Reconfiguració correcta"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opcions de CyberPower Cloud",
+        "data": {
+          "scan_interval": "Interval d'actualització (segons)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "Error d'autenticació de CyberPower Cloud",
+      "description": "Ha fallat l'autenticació per al dispositiu **{device}**. S'ha aturat el sondeig. Comproveu les credencials i reinicieu Home Assistant."
+    },
+    "api_error": {
+      "title": "Error de l'API de CyberPower Cloud",
+      "description": "L'API ha retornat errors repetidament per al dispositiu **{device}**. S'ha aturat el sondeig. Comproveu la connexió i reinicieu."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "En bateria"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "Potència nominal del SAI"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Tensió d'entrada"
+      },
+      "output_voltage": {
+        "name": "Tensió de sortida"
+      },
+      "input_frequency": {
+        "name": "Freqüència d'entrada"
+      },
+      "output_frequency": {
+        "name": "Freqüència de sortida"
+      },
+      "battery_capacity": {
+        "name": "Bateria"
+      },
+      "battery_runtime": {
+        "name": "Autonomia restant"
+      },
+      "load": {
+        "name": "Càrrega"
+      },
+      "battery_health": {
+        "name": "Salut de la bateria"
+      },
+      "ups_temperature": {
+        "name": "Temperatura del SAI"
+      },
+      "environment_temperature": {
+        "name": "Temperatura ambient"
+      },
+      "environment_humidity": {
+        "name": "Humitat ambient"
+      },
+      "device_status": {
+        "name": "Estat"
+      },
+      "power_consumption": {
+        "name": "Consum"
+      },
+      "last_update": {
+        "name": "Última actualització"
+      }
+    }
+  }
+}

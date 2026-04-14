@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "输入您的 PowerPanel Cloud 凭据。",
+        "data": {
+          "email": "电子邮件",
+          "password": "密码"
+        }
+      },
+      "reauth_confirm": {
+        "title": "重新认证 CyberPower Cloud",
+        "description": "您的会话已过期。请输入新密码。",
+        "data": {
+          "password": "密码"
+        }
+      },
+      "reconfigure": {
+        "title": "重新配置 CyberPower Cloud",
+        "description": "更新您的 PowerPanel Cloud 凭据。",
+        "data": {
+          "email": "电子邮件",
+          "password": "密码"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "即将完成！",
+        "description": "登录成功。发现的设备：**{devices}**。\n\n⚠️ **重要：** 不要忘记在每个设备页面的配置部分设置 **UPS 额定功率**（瓦特）。在您配置此值之前，负载 % 传感器将显示为 *未知*。\n\n典型值：OLS1000EA = 900 W，OLS1500EA = 1350 W，OLS2000EA = 1800 W，OLS3000EA = 2700 W。请查看 UPS 型号的数据表以获取精确的瓦特额定值（不是 VA）。\n\n点击提交完成设置。"
+      },
+      "reconfigure_reminder": {
+        "title": "凭据已更新",
+        "description": "重新配置成功。设备：**{devices}**。\n\n⚠️ **提醒：** 请确保每个设备页面上的 **UPS 额定功率** 仍然设置正确 — 负载 % 传感器依赖于此。\n\n点击提交以应用更改。"
+      }
+    },
+    "error": {
+      "invalid_auth": "无效的电子邮件或密码",
+      "cannot_connect": "无法连接到 CyberPower Cloud",
+      "no_devices": "在此账户上未找到 UPS 设备"
+    },
+    "abort": {
+      "already_configured": "此账户已配置",
+      "reauth_successful": "重新认证成功",
+      "reconfigure_successful": "重新配置成功"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "CyberPower Cloud 选项",
+        "data": {
+          "scan_interval": "更新间隔（秒）"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "CyberPower Cloud 认证失败",
+      "description": "设备 **{device}** 的认证失败。轮询已停止。请检查凭据并重新启动 Home Assistant。"
+    },
+    "api_error": {
+      "title": "CyberPower Cloud API 错误",
+      "description": "API 多次连续为设备 **{device}** 返回错误。轮询已停止。请检查连接并重新启动。"
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "电池供电"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "UPS 额定功率"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "输入电压"
+      },
+      "output_voltage": {
+        "name": "输出电压"
+      },
+      "input_frequency": {
+        "name": "输入频率"
+      },
+      "output_frequency": {
+        "name": "输出频率"
+      },
+      "battery_capacity": {
+        "name": "电池"
+      },
+      "battery_runtime": {
+        "name": "电池剩余时间"
+      },
+      "load": {
+        "name": "负载"
+      },
+      "battery_health": {
+        "name": "电池健康"
+      },
+      "ups_temperature": {
+        "name": "UPS 温度"
+      },
+      "environment_temperature": {
+        "name": "环境温度"
+      },
+      "environment_humidity": {
+        "name": "环境湿度"
+      },
+      "device_status": {
+        "name": "状态"
+      },
+      "power_consumption": {
+        "name": "功率消耗"
+      },
+      "last_update": {
+        "name": "最后更新"
+      }
+    }
+  }
+}

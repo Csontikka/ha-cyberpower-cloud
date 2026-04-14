@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Įveskite PowerPanel Cloud prisijungimo duomenis.",
+        "data": {
+          "email": "El. paštas",
+          "password": "Slaptažodis"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Pakartotinis CyberPower Cloud autentifikavimas",
+        "description": "Sesija baigėsi. Įveskite naują slaptažodį.",
+        "data": {
+          "password": "Slaptažodis"
+        }
+      },
+      "reconfigure": {
+        "title": "Perkonfigūruoti CyberPower Cloud",
+        "description": "Atnaujinkite PowerPanel Cloud prisijungimo duomenis.",
+        "data": {
+          "email": "El. paštas",
+          "password": "Slaptažodis"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "Beveik baigta!",
+        "description": "Prisijungimas sėkmingas. Rasti įrenginiai: **{devices}**.\n\n⚠️ **Svarbu:** Nepamirškite nustatyti **UPS nominalios galios** (vatais) kiekvieno įrenginio puslapyje skiltyje Konfigūracija. Apkrovos % jutiklis rodys *Nežinoma*, kol nenustatysite šios vertės.\n\nTipinės vertės: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Patikrinkite duomenų lapą (ne VA).\n\nSpustelėkite Pateikti, kad baigtumėte."
+      },
+      "reconfigure_reminder": {
+        "title": "Duomenys atnaujinti",
+        "description": "Perkonfigūravimas sėkmingas. Įrenginiai: **{devices}**.\n\n⚠️ **Priminimas:** Įsitikinkite, kad **UPS nominali galia** vis dar nustatyta teisingai — apkrovos % jutiklis nuo to priklauso.\n\nSpustelėkite Pateikti."
+      }
+    },
+    "error": {
+      "invalid_auth": "Neteisingas el. paštas arba slaptažodis",
+      "cannot_connect": "Nepavyko prisijungti prie CyberPower Cloud",
+      "no_devices": "Šioje paskyroje UPS įrenginių nerasta"
+    },
+    "abort": {
+      "already_configured": "Ši paskyra jau sukonfigūruota",
+      "reauth_successful": "Pakartotinis autentifikavimas sėkmingas",
+      "reconfigure_successful": "Perkonfigūravimas sėkmingas"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "CyberPower Cloud parinktys",
+        "data": {
+          "scan_interval": "Atnaujinimo intervalas (sekundėmis)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "CyberPower Cloud autentifikavimas nepavyko",
+      "description": "Autentifikavimas nepavyko įrenginiui **{device}**. Apklausa sustabdyta. Patikrinkite duomenis ir paleiskite Home Assistant iš naujo."
+    },
+    "api_error": {
+      "title": "CyberPower Cloud API klaida",
+      "description": "API pakartotinai grąžino klaidas įrenginiui **{device}**. Apklausa sustabdyta. Patikrinkite ryšį ir paleiskite iš naujo."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "Ant baterijos"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "UPS nominali galia"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Įėjimo įtampa"
+      },
+      "output_voltage": {
+        "name": "Išėjimo įtampa"
+      },
+      "input_frequency": {
+        "name": "Įėjimo dažnis"
+      },
+      "output_frequency": {
+        "name": "Išėjimo dažnis"
+      },
+      "battery_capacity": {
+        "name": "Baterija"
+      },
+      "battery_runtime": {
+        "name": "Likęs baterijos laikas"
+      },
+      "load": {
+        "name": "Apkrova"
+      },
+      "battery_health": {
+        "name": "Baterijos būklė"
+      },
+      "ups_temperature": {
+        "name": "UPS temperatūra"
+      },
+      "environment_temperature": {
+        "name": "Aplinkos temperatūra"
+      },
+      "environment_humidity": {
+        "name": "Aplinkos drėgmė"
+      },
+      "device_status": {
+        "name": "Būsena"
+      },
+      "power_consumption": {
+        "name": "Galios sąnaudos"
+      },
+      "last_update": {
+        "name": "Paskutinis atnaujinimas"
+      }
+    }
+  }
+}

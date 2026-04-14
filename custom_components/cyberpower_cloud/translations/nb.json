@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Skriv inn PowerPanel Cloud-legitimasjonen din.",
+        "data": {
+          "email": "E-post",
+          "password": "Passord"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-autentiser CyberPower Cloud",
+        "description": "Økten din har utløpt. Skriv inn det nye passordet.",
+        "data": {
+          "password": "Passord"
+        }
+      },
+      "reconfigure": {
+        "title": "Rekonfigurer CyberPower Cloud",
+        "description": "Oppdater PowerPanel Cloud-legitimasjonen din.",
+        "data": {
+          "email": "E-post",
+          "password": "Passord"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "Nesten ferdig!",
+        "description": "Innlogging vellykket. Oppdagede enheter: **{devices}**.\n\n⚠️ **Viktig:** Ikke glem å stille inn **UPS Merkeeffekt** (watt) på hver enhetsside under Konfigurasjon. Last%-sensoren vil vise *Ukjent* til du konfigurerer denne verdien.\n\nTypiske verdier: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Sjekk databladet (ikke VA).\n\nKlikk Send for å fullføre."
+      },
+      "reconfigure_reminder": {
+        "title": "Legitimasjon oppdatert",
+        "description": "Rekonfigurasjon vellykket. Enheter: **{devices}**.\n\n⚠️ **Påminnelse:** Kontroller at **UPS Merkeeffekt** fortsatt er riktig satt — Last%-sensoren er avhengig av den.\n\nKlikk Send."
+      }
+    },
+    "error": {
+      "invalid_auth": "Ugyldig e-post eller passord",
+      "cannot_connect": "Kan ikke koble til CyberPower Cloud",
+      "no_devices": "Ingen UPS-enheter funnet på denne kontoen"
+    },
+    "abort": {
+      "already_configured": "Denne kontoen er allerede konfigurert",
+      "reauth_successful": "Re-autentisering vellykket",
+      "reconfigure_successful": "Rekonfigurasjon vellykket"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "CyberPower Cloud-innstillinger",
+        "data": {
+          "scan_interval": "Oppdateringsintervall (sekunder)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "CyberPower Cloud-autentisering mislyktes",
+      "description": "Autentisering mislyktes for enhet **{device}**. Polling er stoppet. Sjekk legitimasjonen og start Home Assistant på nytt."
+    },
+    "api_error": {
+      "title": "CyberPower Cloud API-feil",
+      "description": "API-et returnerte feil gjentatte ganger for enhet **{device}**. Polling er stoppet. Sjekk tilkoblingen og start på nytt."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "På batteri"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "UPS Merkeeffekt"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Inngangsspenning"
+      },
+      "output_voltage": {
+        "name": "Utgangsspenning"
+      },
+      "input_frequency": {
+        "name": "Inngangsfrekvens"
+      },
+      "output_frequency": {
+        "name": "Utgangsfrekvens"
+      },
+      "battery_capacity": {
+        "name": "Batteri"
+      },
+      "battery_runtime": {
+        "name": "Gjenværende batteritid"
+      },
+      "load": {
+        "name": "Last"
+      },
+      "battery_health": {
+        "name": "Batteritilstand"
+      },
+      "ups_temperature": {
+        "name": "UPS-temperatur"
+      },
+      "environment_temperature": {
+        "name": "Omgivelsestemperatur"
+      },
+      "environment_humidity": {
+        "name": "Omgivelsesfuktighet"
+      },
+      "device_status": {
+        "name": "Status"
+      },
+      "power_consumption": {
+        "name": "Strømforbruk"
+      },
+      "last_update": {
+        "name": "Siste oppdatering"
+      }
+    }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Unesite svoje PowerPanel Cloud vjerodajnice.",
+        "data": {
+          "email": "E-pošta",
+          "password": "Lozinka"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Ponovna autentifikacija CyberPower Cloud",
+        "description": "Sesija je istekla. Unesite novu lozinku.",
+        "data": {
+          "password": "Lozinka"
+        }
+      },
+      "reconfigure": {
+        "title": "Rekonfiguracija CyberPower Cloud",
+        "description": "Ažurirajte svoje PowerPanel Cloud vjerodajnice.",
+        "data": {
+          "email": "E-pošta",
+          "password": "Lozinka"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "Gotovo gotovo!",
+        "description": "Prijava uspješna. Pronađeni uređaji: **{devices}**.\n\n⚠️ **Važno:** Ne zaboravite postaviti **Nazivnu snagu UPS-a** (watti) na stranici svakog uređaja u odjeljku Konfiguracija. Senzor Opterećenje % prikazivat će *Nepoznato* dok ne konfigurirate ovu vrijednost.\n\nTipične vrijednosti: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Provjerite tehnički list (ne VA).\n\nKliknite Pošalji za završetak."
+      },
+      "reconfigure_reminder": {
+        "title": "Vjerodajnice ažurirane",
+        "description": "Rekonfiguracija uspješna. Uređaji: **{devices}**.\n\n⚠️ **Podsjetnik:** Provjerite je li **Nazivna snaga UPS-a** još uvijek pravilno postavljena — senzor Opterećenje % ovisi o njoj.\n\nKliknite Pošalji."
+      }
+    },
+    "error": {
+      "invalid_auth": "Neispravna e-pošta ili lozinka",
+      "cannot_connect": "Nije moguće spojiti se na CyberPower Cloud",
+      "no_devices": "Nema pronađenih UPS uređaja na ovom računu"
+    },
+    "abort": {
+      "already_configured": "Ovaj račun je već konfiguriran",
+      "reauth_successful": "Ponovna autentifikacija uspješna",
+      "reconfigure_successful": "Rekonfiguracija uspješna"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "CyberPower Cloud opcije",
+        "data": {
+          "scan_interval": "Interval ažuriranja (sekunde)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "Neuspjela CyberPower Cloud autentifikacija",
+      "description": "Autentifikacija nije uspjela za uređaj **{device}**. Ispitivanje je zaustavljeno. Provjerite vjerodajnice i ponovno pokrenite Home Assistant."
+    },
+    "api_error": {
+      "title": "Pogreška CyberPower Cloud API-ja",
+      "description": "API je višekratno vraćao pogreške za uređaj **{device}**. Ispitivanje je zaustavljeno. Provjerite vezu i ponovno pokrenite."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "Na bateriji"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "Nazivna snaga UPS-a"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Ulazni napon"
+      },
+      "output_voltage": {
+        "name": "Izlazni napon"
+      },
+      "input_frequency": {
+        "name": "Ulazna frekvencija"
+      },
+      "output_frequency": {
+        "name": "Izlazna frekvencija"
+      },
+      "battery_capacity": {
+        "name": "Baterija"
+      },
+      "battery_runtime": {
+        "name": "Preostalo vrijeme baterije"
+      },
+      "load": {
+        "name": "Opterećenje"
+      },
+      "battery_health": {
+        "name": "Stanje baterije"
+      },
+      "ups_temperature": {
+        "name": "Temperatura UPS-a"
+      },
+      "environment_temperature": {
+        "name": "Temperatura okoline"
+      },
+      "environment_humidity": {
+        "name": "Vlažnost okoline"
+      },
+      "device_status": {
+        "name": "Status"
+      },
+      "power_consumption": {
+        "name": "Potrošnja"
+      },
+      "last_update": {
+        "name": "Zadnje ažuriranje"
+      }
+    }
+  }
+}

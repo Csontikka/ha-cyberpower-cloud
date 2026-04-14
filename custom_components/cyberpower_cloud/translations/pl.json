@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Wprowadź swoje dane logowania PowerPanel Cloud.",
+        "data": {
+          "email": "E-mail",
+          "password": "Hasło"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Ponowne uwierzytelnienie CyberPower Cloud",
+        "description": "Twoja sesja wygasła. Wprowadź nowe hasło.",
+        "data": {
+          "password": "Hasło"
+        }
+      },
+      "reconfigure": {
+        "title": "Zmiana konfiguracji CyberPower Cloud",
+        "description": "Zaktualizuj dane logowania PowerPanel Cloud.",
+        "data": {
+          "email": "E-mail",
+          "password": "Hasło"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "Prawie gotowe!",
+        "description": "Logowanie powiodło się. Wykryte urządzenia: **{devices}**.\n\n⚠️ **Ważne:** Nie zapomnij ustawić **Mocy Znamionowej UPS** (waty) na stronie każdego urządzenia w sekcji Konfiguracja. Czujnik Obciążenie % będzie pokazywał *Nieznany*, dopóki nie skonfigurujesz tej wartości.\n\nTypowe wartości: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Sprawdź kartę katalogową (nie VA).\n\nKliknij Wyślij, aby zakończyć."
+      },
+      "reconfigure_reminder": {
+        "title": "Dane uwierzytelniające zaktualizowane",
+        "description": "Zmiana konfiguracji udana. Urządzenia: **{devices}**.\n\n⚠️ **Przypomnienie:** Upewnij się, że **Moc Znamionowa UPS** jest nadal prawidłowo ustawiona — czujnik Obciążenie % od niej zależy.\n\nKliknij Wyślij."
+      }
+    },
+    "error": {
+      "invalid_auth": "Nieprawidłowy e-mail lub hasło",
+      "cannot_connect": "Nie można połączyć z CyberPower Cloud",
+      "no_devices": "Nie znaleziono urządzeń UPS na tym koncie"
+    },
+    "abort": {
+      "already_configured": "To konto jest już skonfigurowane",
+      "reauth_successful": "Ponowne uwierzytelnienie powiodło się",
+      "reconfigure_successful": "Zmiana konfiguracji powiodła się"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opcje CyberPower Cloud",
+        "data": {
+          "scan_interval": "Interwał aktualizacji (sekundy)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "Uwierzytelnienie CyberPower Cloud nieudane",
+      "description": "Uwierzytelnienie nie powiodło się dla urządzenia **{device}**. Odpytywanie zatrzymane. Sprawdź dane i uruchom ponownie Home Assistant."
+    },
+    "api_error": {
+      "title": "Błąd API CyberPower Cloud",
+      "description": "API wielokrotnie zwróciło błędy dla urządzenia **{device}**. Odpytywanie zatrzymane. Sprawdź połączenie i uruchom ponownie."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "Na baterii"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "Moc Znamionowa UPS"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Napięcie wejściowe"
+      },
+      "output_voltage": {
+        "name": "Napięcie wyjściowe"
+      },
+      "input_frequency": {
+        "name": "Częstotliwość wejściowa"
+      },
+      "output_frequency": {
+        "name": "Częstotliwość wyjściowa"
+      },
+      "battery_capacity": {
+        "name": "Bateria"
+      },
+      "battery_runtime": {
+        "name": "Pozostały czas baterii"
+      },
+      "load": {
+        "name": "Obciążenie"
+      },
+      "battery_health": {
+        "name": "Stan baterii"
+      },
+      "ups_temperature": {
+        "name": "Temperatura UPS"
+      },
+      "environment_temperature": {
+        "name": "Temperatura otoczenia"
+      },
+      "environment_humidity": {
+        "name": "Wilgotność otoczenia"
+      },
+      "device_status": {
+        "name": "Status"
+      },
+      "power_consumption": {
+        "name": "Zużycie energii"
+      },
+      "last_update": {
+        "name": "Ostatnia aktualizacja"
+      }
+    }
+  }
+}

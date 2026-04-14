@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "CyberPower Cloud",
+        "description": "Введите учётные данные PowerPanel Cloud.",
+        "data": {
+          "email": "Эл. почта",
+          "password": "Пароль"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Повторная аутентификация CyberPower Cloud",
+        "description": "Сеанс истёк. Введите новый пароль.",
+        "data": {
+          "password": "Пароль"
+        }
+      },
+      "reconfigure": {
+        "title": "Переконфигурировать CyberPower Cloud",
+        "description": "Обновите учётные данные PowerPanel Cloud.",
+        "data": {
+          "email": "Эл. почта",
+          "password": "Пароль"
+        }
+      },
+      "rated_power_reminder": {
+        "title": "Почти готово!",
+        "description": "Вход выполнен. Обнаруженные устройства: **{devices}**.\n\n⚠️ **Важно:** Не забудьте установить **Номинальную мощность ИБП** (ватт) на странице каждого устройства в разделе Конфигурация. Датчик Нагрузка % будет показывать *Неизвестно*, пока вы не настроите это значение.\n\nТипичные значения: OLS1000EA = 900 Вт, OLS1500EA = 1350 Вт, OLS2000EA = 1800 Вт, OLS3000EA = 2700 Вт. Проверьте техническое описание (не ВА).\n\nНажмите Отправить для завершения."
+      },
+      "reconfigure_reminder": {
+        "title": "Учётные данные обновлены",
+        "description": "Переконфигурация успешна. Устройства: **{devices}**.\n\n⚠️ **Напоминание:** Убедитесь, что **Номинальная мощность ИБП** по-прежнему настроена правильно — датчик Нагрузка % зависит от неё.\n\nНажмите Отправить."
+      }
+    },
+    "error": {
+      "invalid_auth": "Неверный email или пароль",
+      "cannot_connect": "Не удалось подключиться к CyberPower Cloud",
+      "no_devices": "На этой учётной записи не найдено устройств ИБП"
+    },
+    "abort": {
+      "already_configured": "Эта учётная запись уже настроена",
+      "reauth_successful": "Повторная аутентификация прошла успешно",
+      "reconfigure_successful": "Переконфигурация выполнена успешно"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Параметры CyberPower Cloud",
+        "data": {
+          "scan_interval": "Интервал обновления (секунды)"
+        }
+      }
+    }
+  },
+  "issues": {
+    "auth_failed": {
+      "title": "Ошибка аутентификации CyberPower Cloud",
+      "description": "Аутентификация не удалась для устройства **{device}**. Опрос остановлен. Проверьте учётные данные и перезапустите Home Assistant."
+    },
+    "api_error": {
+      "title": "Ошибка API CyberPower Cloud",
+      "description": "API вернул ошибки несколько раз подряд для устройства **{device}**. Опрос остановлен. Проверьте соединение и перезапустите."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "on_battery": {
+        "name": "На батарее"
+      }
+    },
+    "number": {
+      "ups_rated_power": {
+        "name": "Номинальная мощность ИБП"
+      }
+    },
+    "sensor": {
+      "input_voltage": {
+        "name": "Входное напряжение"
+      },
+      "output_voltage": {
+        "name": "Выходное напряжение"
+      },
+      "input_frequency": {
+        "name": "Входная частота"
+      },
+      "output_frequency": {
+        "name": "Выходная частота"
+      },
+      "battery_capacity": {
+        "name": "Батарея"
+      },
+      "battery_runtime": {
+        "name": "Оставшееся время батареи"
+      },
+      "load": {
+        "name": "Нагрузка"
+      },
+      "battery_health": {
+        "name": "Состояние батареи"
+      },
+      "ups_temperature": {
+        "name": "Температура ИБП"
+      },
+      "environment_temperature": {
+        "name": "Температура среды"
+      },
+      "environment_humidity": {
+        "name": "Влажность среды"
+      },
+      "device_status": {
+        "name": "Статус"
+      },
+      "power_consumption": {
+        "name": "Потребление"
+      },
+      "last_update": {
+        "name": "Последнее обновление"
+      }
+    }
+  }
+}

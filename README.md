@@ -245,9 +245,20 @@ automation:
 | API errors (3 consecutive) | Stops polling, creates a repair issue |
 | Token expiry | Automatic re-login and retry |
 
-## Debug logging
+## Troubleshooting
 
-Add the following to your `configuration.yaml` to enable debug logging:
+### Diagnostics Export
+
+Download the integration diagnostics file for bug reports — it includes the integration state and configuration (with sensitive data redacted).
+
+1. Go to **Settings → Devices & Services**
+2. Find **CyberPower PowerPanel Cloud** → click the integration
+3. Click the three-dot menu → **Download diagnostics**
+4. Attach the `.json` file to your GitHub issue
+
+### Debug Logs
+
+To see detailed logs in the HA log viewer, add to `configuration.yaml`:
 
 ```yaml
 logger:
@@ -256,7 +267,13 @@ logger:
     custom_components.cyberpower_cloud: debug
 ```
 
-After restarting, check **Settings** > **System** > **Logs** for detailed API communication logs.
+This enables per-request API traces, coordinator update summaries, login/token refresh events, and event-firing logs. After restarting Home Assistant, check **Settings → System → Logs**.
+
+### Removal
+
+1. Go to **Settings → Devices & Services → CyberPower PowerPanel Cloud**
+2. Click the three-dot menu → **Delete**
+3. Optionally remove `custom_components/cyberpower_cloud/` and restart Home Assistant
 
 ## How it works
 
@@ -266,6 +283,14 @@ Data is polled at a configurable interval (default: 5 minutes). Two API endpoint
 
 - `/device/read/status` — battery status, load (watts), BHI
 - `/status/log` — voltage, frequency, temperature readings
+
+## Supported Languages
+
+The integration UI is available in 30 languages:
+
+🇬🇧 English • 🇧🇬 Български • 🇪🇸 Català • 🇨🇿 Čeština • 🇩🇰 Dansk • 🇩🇪 Deutsch • 🇬🇷 Ελληνικά • 🇪🇸 Español • 🇪🇪 Eesti • 🇫🇮 Suomi • 🇫🇷 Français • 🇭🇷 Hrvatski • 🇭🇺 Magyar • 🇮🇹 Italiano • 🇯🇵 日本語 • 🇰🇷 한국어 • 🇱🇹 Lietuvių • 🇳🇴 Norsk • 🇳🇱 Nederlands • 🇵🇱 Polski • 🇵🇹 Português • 🇧🇷 Português (Brasil) • 🇷🇴 Română • 🇷🇺 Русский • 🇸🇰 Slovenčina • 🇸🇪 Svenska • 🇹🇷 Türkçe • 🇺🇦 Українська • 🇻🇳 Tiếng Việt • 🇨🇳 简体中文
+
+> Translations were machine-generated — if you spot any issues, please [open an issue](https://github.com/Csontikka/ha-cyberpower-cloud/issues) or submit a PR!
 
 ## Known limitations
 
