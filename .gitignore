@@ -47,3 +47,9 @@ import/
 
 # Screenshots (dev only)
 screenshots_targeted/
+
+# Icon/banner dev artifacts
+/generate_icons.py
+/icon_proposals/
+/mikrotik_icon.png
+/syncthing_icon.png
