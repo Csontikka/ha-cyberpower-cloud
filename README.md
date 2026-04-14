@@ -7,7 +7,15 @@
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Csontikka_ha-cyberpower-cloud&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=Csontikka_ha-cyberpower-cloud)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Csontikka_ha-cyberpower-cloud&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Csontikka_ha-cyberpower-cloud)
 
-![CyberPower PowerPanel Cloud Banner](images/banner.png)
+![Banner A](images/banner_a.png)
+
+![Banner B](images/banner_b.png)
+
+![Banner C](images/banner_c.png)
+
+![Banner D](images/banner_d.png)
+
+![Banner E](images/banner_e.png)
 
 Home Assistant custom integration for **CyberPower UPS** devices connected via [PowerPanel Cloud](https://powerpanel.cyberpower.com).
 
