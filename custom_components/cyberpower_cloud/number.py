@@ -10,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import DEFAULT_UPS_RATED_POWER, DOMAIN
+from .const import DOMAIN
 from .coordinator import CyberPowerCoordinator
 
 
