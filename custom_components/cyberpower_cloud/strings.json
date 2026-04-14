@@ -23,6 +23,14 @@
           "email": "Email",
           "password": "Password"
         }
+      },
+      "rated_power_reminder": {
+        "title": "Almost done!",
+        "description": "Login successful. Discovered devices: **{devices}**.\n\n⚠️ **Important:** Don't forget to set the **UPS Rated Power** (watts) on each device page under the Configuration section. The Load % sensor will show as *Unknown* until you configure this value.\n\nTypical values: OLS1000EA = 900 W, OLS1500EA = 1350 W, OLS2000EA = 1800 W, OLS3000EA = 2700 W. Check your UPS model's datasheet for the exact watt rating (not VA).\n\nClick Submit to finish setup."
+      },
+      "reconfigure_reminder": {
+        "title": "Credentials updated",
+        "description": "Reconfiguration successful. Discovered devices: **{devices}**.\n\n⚠️ **Reminder:** Make sure the **UPS Rated Power** is still set correctly on each device page — the Load % sensor depends on it.\n\nClick Submit to apply the changes."
       }
     },
     "error": {

@@ -54,8 +54,8 @@ def test_config_flow_shows_form_on_empty():
     assert result["step_id"] == "user"
 
 
-def test_config_flow_success():
-    """Test successful config flow."""
+def test_config_flow_success_shows_reminder():
+    """Successful login forwards to the rated power reminder step."""
 
     async def _run():
         flow = _make_flow()
@@ -73,10 +73,30 @@ def test_config_flow_success():
             flow, "_abort_if_unique_id_configured"
         ), patch.object(
             flow,
+            "async_show_form",
+            side_effect=lambda **kwargs: {"type": "form", "step_id": kwargs.get("step_id")},
+        ):
+            return await flow.async_step_user(MOCK_CONFIG_ENTRY_DATA)
+
+    result = asyncio.run(_run())
+    assert result["type"] == "form"
+    assert result["step_id"] == "rated_power_reminder"
+
+
+def test_config_flow_reminder_creates_entry():
+    """Submitting the reminder step creates the config entry."""
+
+    async def _run():
+        flow = _make_flow()
+        flow._pending_user_input = MOCK_CONFIG_ENTRY_DATA
+        flow._pending_device_names = "Test UPS"
+
+        with patch.object(
+            flow,
             "async_create_entry",
             return_value={"type": "create_entry", "title": "CyberPower (Test UPS)"},
         ):
-            return await flow.async_step_user(MOCK_CONFIG_ENTRY_DATA)
+            return await flow.async_step_rated_power_reminder({})
 
     result = asyncio.run(_run())
     assert result["type"] == "create_entry"

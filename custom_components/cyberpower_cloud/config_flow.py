@@ -40,6 +40,10 @@ class CyberPowerCloudConfigFlow(ConfigFlow, domain=DOMAIN):
 
     VERSION = 1
 
+    def __init__(self) -> None:
+        self._pending_user_input: dict[str, Any] | None = None
+        self._pending_device_names: str = ""
+
     @staticmethod
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow:
         return CyberPowerOptionsFlow(config_entry)
@@ -71,18 +75,32 @@ class CyberPowerCloudConfigFlow(ConfigFlow, domain=DOMAIN):
                     await self.async_set_unique_id(user_input[CONF_EMAIL].lower())
                     self._abort_if_unique_id_configured()
 
-                    device_names = ", ".join(
+                    self._pending_user_input = user_input
+                    self._pending_device_names = ", ".join(
                         d.get("DeviceName", d.get("Model", "UPS")) for d in devices
                     )
-                    return self.async_create_entry(
-                        title=f"CyberPower ({device_names})",
-                        data=user_input,
-                    )
+                    return await self.async_step_rated_power_reminder()
 
         return self.async_show_form(
             step_id="user",
             data_schema=STEP_USER_DATA_SCHEMA,
             errors=errors,
+        )
+
+    async def async_step_rated_power_reminder(
+        self, user_input: dict[str, Any] | None = None
+    ) -> ConfigFlowResult:
+        """Remind the user to set UPS Rated Power after initial login."""
+        if user_input is not None:
+            return self.async_create_entry(
+                title=f"CyberPower ({self._pending_device_names})",
+                data=self._pending_user_input,
+            )
+
+        return self.async_show_form(
+            step_id="rated_power_reminder",
+            data_schema=vol.Schema({}),
+            description_placeholders={"devices": self._pending_device_names},
         )
 
     async def async_step_reauth(self, entry_data: dict[str, Any]) -> ConfigFlowResult:
@@ -143,12 +161,11 @@ class CyberPowerCloudConfigFlow(ConfigFlow, domain=DOMAIN):
                 if not api.devices:
                     errors["base"] = "no_devices"
                 else:
-                    entry = self.hass.config_entries.async_get_entry(
-                        self.context["entry_id"]
+                    self._pending_user_input = user_input
+                    self._pending_device_names = ", ".join(
+                        d.get("DeviceName", d.get("Model", "UPS")) for d in api.devices
                     )
-                    self.hass.config_entries.async_update_entry(entry, data=user_input)
-                    await self.hass.config_entries.async_reload(entry.entry_id)
-                    return self.async_abort(reason="reconfigure_successful")
+                    return await self.async_step_reconfigure_reminder()
 
         entry = self.hass.config_entries.async_get_entry(self.context["entry_id"])
         return self.async_show_form(
@@ -162,6 +179,26 @@ class CyberPowerCloudConfigFlow(ConfigFlow, domain=DOMAIN):
                 }
             ),
             errors=errors,
+        )
+
+    async def async_step_reconfigure_reminder(
+        self, user_input: dict[str, Any] | None = None
+    ) -> ConfigFlowResult:
+        """Remind the user to verify UPS Rated Power after reconfigure."""
+        if user_input is not None:
+            entry = self.hass.config_entries.async_get_entry(
+                self.context["entry_id"]
+            )
+            self.hass.config_entries.async_update_entry(
+                entry, data=self._pending_user_input
+            )
+            await self.hass.config_entries.async_reload(entry.entry_id)
+            return self.async_abort(reason="reconfigure_successful")
+
+        return self.async_show_form(
+            step_id="reconfigure_reminder",
+            data_schema=vol.Schema({}),
+            description_placeholders={"devices": self._pending_device_names},
         )
 
 
