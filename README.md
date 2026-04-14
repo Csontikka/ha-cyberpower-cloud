@@ -6,6 +6,7 @@
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Csontikka_ha-cyberpower-cloud&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Csontikka_ha-cyberpower-cloud)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Csontikka_ha-cyberpower-cloud&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=Csontikka_ha-cyberpower-cloud)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Csontikka_ha-cyberpower-cloud&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Csontikka_ha-cyberpower-cloud)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-donate-yellow.svg?style=plastic)](https://buymeacoffee.com/Csontikka)
 
 > **Note:** For best viewing experience, read this documentation on [GitHub](https://github.com/Csontikka/ha-cyberpower-cloud).
 
