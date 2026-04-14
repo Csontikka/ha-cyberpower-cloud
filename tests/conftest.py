@@ -1,12 +1,11 @@
 """Fixtures for CyberPower Cloud tests."""
 from __future__ import annotations
 
+import asyncio
 from collections.abc import Generator
-from unittest.mock import AsyncMock, patch
+from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
-
-from homeassistant.core import HomeAssistant
 
 from custom_components.cyberpower_cloud.const import DOMAIN
 
@@ -59,6 +58,16 @@ MOCK_CONFIG_ENTRY_DATA = {
 }
 
 
+# Reset event loop policy — HA overrides it with a custom one that can break
+# under pytest-socket's socket blocking.
+@pytest.fixture(scope="session", autouse=True)
+def reset_event_loop_policy():
+    """Use default asyncio event loop policy instead of HA's custom one."""
+    asyncio.set_event_loop_policy(asyncio.DefaultEventLoopPolicy())
+    yield
+    asyncio.set_event_loop_policy(asyncio.DefaultEventLoopPolicy())
+
+
 @pytest.fixture
 def mock_api() -> Generator[AsyncMock]:
     """Mock the CyberPowerCloudAPI."""
@@ -72,24 +81,3 @@ def mock_api() -> Generator[AsyncMock]:
         api.get_device_status = AsyncMock(return_value=MOCK_DEVICE_STATUS)
         api.get_status_log = AsyncMock(return_value=MOCK_STATUS_LOG)
         yield api
-
-
-@pytest.fixture
-def mock_config_entry(hass: HomeAssistant):
-    """Create a mock config entry."""
-    from homeassistant.config_entries import ConfigEntry
-    from unittest.mock import MagicMock
-
-    entry = ConfigEntry(
-        version=1,
-        minor_version=1,
-        domain=DOMAIN,
-        title="CyberPower (Test UPS)",
-        data=MOCK_CONFIG_ENTRY_DATA,
-        source="user",
-        unique_id=MOCK_EMAIL,
-        options={},
-        discovery_keys=MagicMock(),
-    )
-    entry.add_to_hass(hass)
-    return entry

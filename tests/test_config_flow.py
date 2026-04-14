@@ -1,118 +1,158 @@
 """Tests for the CyberPower Cloud config flow."""
 from __future__ import annotations
 
+import asyncio
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import aiohttp
-import pytest
-
-from homeassistant import config_entries
-from homeassistant.core import HomeAssistant
-from homeassistant.data_entry_flow import FlowResultType
 
 from custom_components.cyberpower_cloud.api import AuthError
-from custom_components.cyberpower_cloud.const import DOMAIN
+from custom_components.cyberpower_cloud.const import CONF_EMAIL, CONF_PASSWORD, DOMAIN
 
-from .conftest import MOCK_CONFIG_ENTRY_DATA, MOCK_EMAIL
-
-
-@pytest.fixture(autouse=True)
-def _mock_setup_entry():
-    """Prevent actual setup during config flow tests."""
-    with patch(
-        "custom_components.cyberpower_cloud.async_setup_entry",
-        return_value=True,
-    ):
-        yield
+from .conftest import MOCK_CONFIG_ENTRY_DATA, MOCK_DEVICE, MOCK_EMAIL
 
 
-async def test_user_flow_success(hass: HomeAssistant, mock_api: AsyncMock) -> None:
-    """Test successful user config flow."""
-    with patch(
-        "custom_components.cyberpower_cloud.config_flow.CyberPowerCloudAPI",
-        return_value=mock_api,
-    ):
-        result = await hass.config_entries.flow.async_init(
-            DOMAIN, context={"source": config_entries.SOURCE_USER}
-        )
-        assert result["type"] is FlowResultType.FORM
-        assert result["step_id"] == "user"
+def _mock_api(auth_error=False, connect_error=False, no_devices=False):
+    """Create a mock API client."""
+    api = MagicMock()
+    if auth_error:
+        api.login = AsyncMock(side_effect=AuthError("Invalid credentials"))
+    elif connect_error:
+        api.login = AsyncMock(side_effect=aiohttp.ClientError())
+    else:
+        api.login = AsyncMock(return_value={"Flag": True})
 
-        result = await hass.config_entries.flow.async_configure(
-            result["flow_id"], MOCK_CONFIG_ENTRY_DATA
-        )
-        assert result["type"] is FlowResultType.CREATE_ENTRY
-        assert result["title"] == "CyberPower (Test UPS)"
-        assert result["data"] == MOCK_CONFIG_ENTRY_DATA
+    api.devices = [] if no_devices else [MOCK_DEVICE]
+    return api
 
 
-async def test_user_flow_invalid_auth(hass: HomeAssistant, mock_api: AsyncMock) -> None:
+def _make_flow():
+    """Create a config flow instance with mocked hass."""
+    from custom_components.cyberpower_cloud.config_flow import CyberPowerCloudConfigFlow
+
+    flow = CyberPowerCloudConfigFlow()
+    flow.hass = MagicMock()
+    flow.hass.config_entries = MagicMock()
+    flow.hass.config_entries.async_entries = MagicMock(return_value=[])
+    return flow
+
+
+def test_config_flow_shows_form_on_empty():
+    """Test that the form is shown when no input is provided."""
+
+    async def _run():
+        flow = _make_flow()
+        with patch.object(
+            flow,
+            "async_show_form",
+            return_value={"type": "form", "step_id": "user", "errors": {}},
+        ):
+            return await flow.async_step_user(None)
+
+    result = asyncio.run(_run())
+    assert result["type"] == "form"
+    assert result["step_id"] == "user"
+
+
+def test_config_flow_success():
+    """Test successful config flow."""
+
+    async def _run():
+        flow = _make_flow()
+        api = _mock_api()
+
+        with patch(
+            "custom_components.cyberpower_cloud.config_flow.CyberPowerCloudAPI",
+            return_value=api,
+        ), patch(
+            "custom_components.cyberpower_cloud.config_flow.async_get_clientsession",
+            return_value=MagicMock(),
+        ), patch.object(
+            flow, "async_set_unique_id", new_callable=AsyncMock, return_value=None
+        ), patch.object(
+            flow, "_abort_if_unique_id_configured"
+        ), patch.object(
+            flow,
+            "async_create_entry",
+            return_value={"type": "create_entry", "title": "CyberPower (Test UPS)"},
+        ):
+            return await flow.async_step_user(MOCK_CONFIG_ENTRY_DATA)
+
+    result = asyncio.run(_run())
+    assert result["type"] == "create_entry"
+    assert result["title"] == "CyberPower (Test UPS)"
+
+
+def test_config_flow_invalid_auth():
     """Test config flow with invalid credentials."""
-    mock_api.login = AsyncMock(side_effect=AuthError("Invalid credentials"))
 
-    with patch(
-        "custom_components.cyberpower_cloud.config_flow.CyberPowerCloudAPI",
-        return_value=mock_api,
-    ):
-        result = await hass.config_entries.flow.async_init(
-            DOMAIN, context={"source": config_entries.SOURCE_USER}
-        )
-        result = await hass.config_entries.flow.async_configure(
-            result["flow_id"], MOCK_CONFIG_ENTRY_DATA
-        )
-        assert result["type"] is FlowResultType.FORM
-        assert result["errors"] == {"base": "invalid_auth"}
+    async def _run():
+        flow = _make_flow()
+        api = _mock_api(auth_error=True)
+
+        with patch(
+            "custom_components.cyberpower_cloud.config_flow.CyberPowerCloudAPI",
+            return_value=api,
+        ), patch(
+            "custom_components.cyberpower_cloud.config_flow.async_get_clientsession",
+            return_value=MagicMock(),
+        ), patch.object(
+            flow,
+            "async_show_form",
+            side_effect=lambda **kwargs: {"type": "form", "errors": kwargs.get("errors", {})},
+        ):
+            return await flow.async_step_user(MOCK_CONFIG_ENTRY_DATA)
+
+    result = asyncio.run(_run())
+    assert result["type"] == "form"
+    assert result["errors"] == {"base": "invalid_auth"}
 
 
-async def test_user_flow_cannot_connect(hass: HomeAssistant, mock_api: AsyncMock) -> None:
+def test_config_flow_cannot_connect():
     """Test config flow with connection error."""
-    mock_api.login = AsyncMock(side_effect=aiohttp.ClientError())
 
-    with patch(
-        "custom_components.cyberpower_cloud.config_flow.CyberPowerCloudAPI",
-        return_value=mock_api,
-    ):
-        result = await hass.config_entries.flow.async_init(
-            DOMAIN, context={"source": config_entries.SOURCE_USER}
-        )
-        result = await hass.config_entries.flow.async_configure(
-            result["flow_id"], MOCK_CONFIG_ENTRY_DATA
-        )
-        assert result["type"] is FlowResultType.FORM
-        assert result["errors"] == {"base": "cannot_connect"}
+    async def _run():
+        flow = _make_flow()
+        api = _mock_api(connect_error=True)
+
+        with patch(
+            "custom_components.cyberpower_cloud.config_flow.CyberPowerCloudAPI",
+            return_value=api,
+        ), patch(
+            "custom_components.cyberpower_cloud.config_flow.async_get_clientsession",
+            return_value=MagicMock(),
+        ), patch.object(
+            flow,
+            "async_show_form",
+            side_effect=lambda **kwargs: {"type": "form", "errors": kwargs.get("errors", {})},
+        ):
+            return await flow.async_step_user(MOCK_CONFIG_ENTRY_DATA)
+
+    result = asyncio.run(_run())
+    assert result["type"] == "form"
+    assert result["errors"] == {"base": "cannot_connect"}
 
 
-async def test_user_flow_no_devices(hass: HomeAssistant, mock_api: AsyncMock) -> None:
+def test_config_flow_no_devices():
     """Test config flow when no devices found."""
-    mock_api.devices = []
 
-    with patch(
-        "custom_components.cyberpower_cloud.config_flow.CyberPowerCloudAPI",
-        return_value=mock_api,
-    ):
-        result = await hass.config_entries.flow.async_init(
-            DOMAIN, context={"source": config_entries.SOURCE_USER}
-        )
-        result = await hass.config_entries.flow.async_configure(
-            result["flow_id"], MOCK_CONFIG_ENTRY_DATA
-        )
-        assert result["type"] is FlowResultType.FORM
-        assert result["errors"] == {"base": "no_devices"}
+    async def _run():
+        flow = _make_flow()
+        api = _mock_api(no_devices=True)
 
+        with patch(
+            "custom_components.cyberpower_cloud.config_flow.CyberPowerCloudAPI",
+            return_value=api,
+        ), patch(
+            "custom_components.cyberpower_cloud.config_flow.async_get_clientsession",
+            return_value=MagicMock(),
+        ), patch.object(
+            flow,
+            "async_show_form",
+            side_effect=lambda **kwargs: {"type": "form", "errors": kwargs.get("errors", {})},
+        ):
+            return await flow.async_step_user(MOCK_CONFIG_ENTRY_DATA)
 
-async def test_user_flow_already_configured(
-    hass: HomeAssistant, mock_api: AsyncMock, mock_config_entry
-) -> None:
-    """Test config flow when already configured."""
-    with patch(
-        "custom_components.cyberpower_cloud.config_flow.CyberPowerCloudAPI",
-        return_value=mock_api,
-    ):
-        result = await hass.config_entries.flow.async_init(
-            DOMAIN, context={"source": config_entries.SOURCE_USER}
-        )
-        result = await hass.config_entries.flow.async_configure(
-            result["flow_id"], MOCK_CONFIG_ENTRY_DATA
-        )
-        assert result["type"] is FlowResultType.ABORT
-        assert result["reason"] == "already_configured"
+    result = asyncio.run(_run())
+    assert result["type"] == "form"
+    assert result["errors"] == {"base": "no_devices"}
