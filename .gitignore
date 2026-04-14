@@ -33,14 +33,14 @@ desktop.ini
 .claude/
 .omc/
 
-# Dev utility scripts (may contain credentials)
-deploy.py
-create_repo.py
-check_*.py
-test_*.py
-setup_*.py
-screenshot_*.py
-mask_*.py
+# Dev utility scripts (may contain credentials, root only)
+/deploy.py
+/create_repo.py
+/check_*.py
+/test_*.py
+/setup_*.py
+/screenshot_*.py
+/mask_*.py
 
 # Import/migration files
 import/

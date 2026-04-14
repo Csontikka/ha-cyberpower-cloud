@@ -1,0 +1,27 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release_zip:
+    name: Prepare release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Zip integration dir
+        run: |
+          cd ${{ github.workspace }}/custom_components/cyberpower_cloud
+          zip cyberpower_cloud.zip -r ./
+      - name: Upload zip to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ github.workspace }}/custom_components/cyberpower_cloud/cyberpower_cloud.zip
+          asset_name: cyberpower_cloud.zip
+          tag: ${{ github.ref }}
+          overwrite: true

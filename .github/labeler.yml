@@ -1,0 +1,23 @@
+integration:
+  - changed-files:
+      - any-glob-to-any-file: "custom_components/cyberpower_cloud/**"
+
+tests:
+  - changed-files:
+      - any-glob-to-any-file: "tests/**"
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "*.md"
+          - "docs/**"
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file: ".github/**"
+
+translations:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "custom_components/cyberpower_cloud/translations/**"
+          - "custom_components/cyberpower_cloud/strings.json"
