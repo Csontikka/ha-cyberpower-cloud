@@ -15,14 +15,6 @@ Home Assistant custom integration for **CyberPower UPS** devices connected via [
 
 Monitor battery status, power consumption, load, voltage, temperature and more — directly from your Home Assistant dashboard. Get instant notifications on power outages through dedicated events.
 
-## Support
-
-Found a bug or have an idea? [Open an issue](https://github.com/Csontikka/ha-cyberpower-cloud/issues) — feedback and feature requests are welcome!
-
-If you find this integration useful, consider [buying me a coffee](https://www.buymeacoffee.com/csontikka) ☕.
-
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-donate-yellow?logo=buy-me-a-coffee&logoColor=white)](https://www.buymeacoffee.com/csontikka)
-
 ## Prerequisites
 
 1. A CyberPower UPS registered in [PowerPanel Cloud](https://powerpanel.cyberpower.com)
