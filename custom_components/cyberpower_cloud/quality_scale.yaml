@@ -83,6 +83,4 @@ rules:
   # Platinum
   async-dependency: done
   inject-websession: done
-  strict-typing:
-    status: todo
-    comment: Full PEP 484 type coverage pending; signatures are typed but some locals are not.
+  strict-typing: done

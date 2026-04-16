@@ -48,4 +48,4 @@ class CyberPowerOnBatterySensor(CyberPowerEntity, BinarySensorEntity):
         bat_sta = self.coordinator.data.get("BatSta")
         if bat_sta is None:
             return None
-        return bat_sta != 0
+        return bool(bat_sta != 0)

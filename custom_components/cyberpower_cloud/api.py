@@ -7,7 +7,7 @@ import hmac
 import json
 import logging
 import time
-from typing import Any
+from typing import Any, cast
 
 import aiohttp
 
@@ -67,7 +67,7 @@ class CyberPowerCloudAPI:
             timeout=aiohttp.ClientTimeout(total=15),
         ) as resp:
             _LOGGER.debug("Login response status: %d", resp.status)
-            data = await resp.json(content_type=None)
+            data: dict[str, Any] = await resp.json(content_type=None)
 
         if not data.get("Flag"):
             msg = data.get("Message", "Login failed")
@@ -101,7 +101,7 @@ class CyberPowerCloudAPI:
                 timeout=aiohttp.ClientTimeout(total=15),
             ) as resp:
                 _LOGGER.debug("API response: %s status=%d", endpoint, resp.status)
-                data = await resp.json(content_type=None)
+                data: dict[str, Any] = await resp.json(content_type=None)
 
             if resp.status == 401 or (
                 not data.get("result") and "expired" in str(data.get("errmsg", ""))
@@ -134,7 +134,7 @@ class CyberPowerCloudAPI:
         status_list = data.get("msg", {}).get("device_status", [])
         if not status_list:
             raise ApiError("No device status returned")
-        return status_list[0]
+        return cast(dict[str, Any], status_list[0])
 
     async def get_status_log(self, dcode: int) -> dict[str, Any]:
         """Get latest status log entry (voltage, frequency, temp)."""
@@ -151,4 +151,4 @@ class CyberPowerCloudAPI:
         entries = data.get("msg", {}).get("body", [])
         if not entries:
             return {}
-        return entries[0]  # most recent
+        return cast(dict[str, Any], entries[0])  # most recent

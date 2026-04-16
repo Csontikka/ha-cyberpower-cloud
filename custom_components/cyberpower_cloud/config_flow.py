@@ -92,6 +92,7 @@ class CyberPowerCloudConfigFlow(ConfigFlow, domain=DOMAIN):
     ) -> ConfigFlowResult:
         """Remind the user to set UPS Rated Power after initial login."""
         if user_input is not None:
+            assert self._pending_user_input is not None
             return self.async_create_entry(
                 title=f"CyberPower ({self._pending_device_names})",
                 data=self._pending_user_input,
@@ -115,6 +116,7 @@ class CyberPowerCloudConfigFlow(ConfigFlow, domain=DOMAIN):
 
         if user_input is not None:
             entry = self.hass.config_entries.async_get_entry(self.context["entry_id"])
+            assert entry is not None
             email = entry.data[CONF_EMAIL]
 
             session = async_get_clientsession(self.hass)
@@ -168,6 +170,7 @@ class CyberPowerCloudConfigFlow(ConfigFlow, domain=DOMAIN):
                     return await self.async_step_reconfigure_reminder()
 
         entry = self.hass.config_entries.async_get_entry(self.context["entry_id"])
+        assert entry is not None
         return self.async_show_form(
             step_id="reconfigure",
             data_schema=vol.Schema(
@@ -187,6 +190,8 @@ class CyberPowerCloudConfigFlow(ConfigFlow, domain=DOMAIN):
         """Remind the user to verify UPS Rated Power after reconfigure."""
         if user_input is not None:
             entry = self.hass.config_entries.async_get_entry(self.context["entry_id"])
+            assert entry is not None
+            assert self._pending_user_input is not None
             self.hass.config_entries.async_update_entry(
                 entry, data=self._pending_user_input
             )
