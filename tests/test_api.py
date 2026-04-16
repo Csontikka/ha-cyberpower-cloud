@@ -1,9 +1,9 @@
 """Tests for the CyberPower Cloud API client."""
+
 from __future__ import annotations
 
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock
 
-import aiohttp
 import pytest
 
 from custom_components.cyberpower_cloud.api import (
@@ -117,3 +117,121 @@ class TestDeviceStatus:
         session.post = MagicMock(return_value=_make_response(response_data))
         with pytest.raises(ApiError, match="No device status"):
             await api.get_device_status("TEST_SN")
+
+
+class TestStatusLog:
+    """Test status log retrieval."""
+
+    async def test_get_status_log_success(self) -> None:
+        """Returns most recent entry from body list."""
+        log_data = {"InVol": 230.5, "OutVol": 230.2, "BatCap": 100}
+        response_data = {"result": True, "msg": {"body": [log_data]}}
+
+        session = MagicMock()
+        session.post = MagicMock(return_value=_make_response(MOCK_LOGIN_RESPONSE))
+        api = CyberPowerCloudAPI(session, MOCK_EMAIL, MOCK_PASSWORD)
+        await api.login()
+
+        session.post = MagicMock(return_value=_make_response(response_data))
+        result = await api.get_status_log(12345)
+        assert result == log_data
+
+    async def test_get_status_log_empty_returns_empty_dict(self) -> None:
+        """Empty log body returns empty dict rather than raising."""
+        response_data = {"result": True, "msg": {"body": []}}
+
+        session = MagicMock()
+        session.post = MagicMock(return_value=_make_response(MOCK_LOGIN_RESPONSE))
+        api = CyberPowerCloudAPI(session, MOCK_EMAIL, MOCK_PASSWORD)
+        await api.login()
+
+        session.post = MagicMock(return_value=_make_response(response_data))
+        assert await api.get_status_log(12345) == {}
+
+
+class TestPostErrorPaths:
+    """Test the shared _post() helper error handling."""
+
+    async def test_post_api_error_dict_errmsg(self) -> None:
+        """Structured errmsg dict surfaces the body field."""
+        response_data = {"result": False, "errmsg": {"body": "Device offline"}}
+
+        session = MagicMock()
+        session.post = MagicMock(return_value=_make_response(MOCK_LOGIN_RESPONSE))
+        api = CyberPowerCloudAPI(session, MOCK_EMAIL, MOCK_PASSWORD)
+        await api.login()
+
+        session.post = MagicMock(return_value=_make_response(response_data))
+        with pytest.raises(ApiError, match="Device offline"):
+            await api.get_device_status("SN")
+
+    async def test_post_api_error_plain_errmsg(self) -> None:
+        """Plain-string errmsg surfaces directly."""
+        response_data = {"result": False, "errmsg": "Something broke"}
+
+        session = MagicMock()
+        session.post = MagicMock(return_value=_make_response(MOCK_LOGIN_RESPONSE))
+        api = CyberPowerCloudAPI(session, MOCK_EMAIL, MOCK_PASSWORD)
+        await api.login()
+
+        session.post = MagicMock(return_value=_make_response(response_data))
+        with pytest.raises(ApiError, match="Something broke"):
+            await api.get_device_status("SN")
+
+    async def test_post_401_triggers_relogin(self) -> None:
+        """A 401 on first attempt re-logs in and retries successfully."""
+        login_resp = _make_response(MOCK_LOGIN_RESPONSE)
+        expired_resp = _make_response({"result": False}, status=401)
+        success_resp = _make_response(
+            {"result": True, "msg": {"device_status": [{"BatCap": 95}]}}
+        )
+
+        session = MagicMock()
+        # sequence: initial login, expired request, re-login, successful retry
+        session.post = MagicMock(
+            side_effect=[login_resp, expired_resp, login_resp, success_resp]
+        )
+        api = CyberPowerCloudAPI(session, MOCK_EMAIL, MOCK_PASSWORD)
+        await api.login()
+
+        result = await api.get_device_status("SN")
+        assert result == {"BatCap": 95}
+
+    async def test_post_relogin_failure_raises_auth_error(self) -> None:
+        """401 persisting across the retry surfaces as AuthError."""
+        login_resp = _make_response(MOCK_LOGIN_RESPONSE)
+        expired_resp = _make_response({"result": False}, status=401)
+
+        session = MagicMock()
+        # Always returns 401 for requests; logins succeed.
+        responses = iter(
+            [login_resp, expired_resp, login_resp, expired_resp, login_resp]
+        )
+        session.post = MagicMock(side_effect=lambda *a, **kw: next(responses))
+        api = CyberPowerCloudAPI(session, MOCK_EMAIL, MOCK_PASSWORD)
+        await api.login()
+
+        from custom_components.cyberpower_cloud.api import AuthError
+
+        with pytest.raises(AuthError, match="Re-login failed"):
+            await api.get_device_status("SN")
+
+    async def test_post_expired_errmsg_triggers_relogin(self) -> None:
+        """'expired' in errmsg triggers re-login path even without 401."""
+        login_resp = _make_response(MOCK_LOGIN_RESPONSE)
+        expired_resp = _make_response(
+            {"result": False, "errmsg": "token expired"}, status=200
+        )
+        success_resp = _make_response(
+            {"result": True, "msg": {"device_status": [{"BatCap": 80}]}}
+        )
+
+        session = MagicMock()
+        session.post = MagicMock(
+            side_effect=[login_resp, expired_resp, login_resp, success_resp]
+        )
+        api = CyberPowerCloudAPI(session, MOCK_EMAIL, MOCK_PASSWORD)
+        await api.login()
+
+        result = await api.get_device_status("SN")
+        assert result == {"BatCap": 80}

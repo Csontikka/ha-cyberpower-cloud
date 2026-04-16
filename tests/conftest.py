@@ -1,18 +1,26 @@
 """Fixtures for CyberPower Cloud tests."""
+
 from __future__ import annotations
 
 import asyncio
 from collections.abc import Generator
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, patch
 
 import pytest
+import pytest_socket
 
-from custom_components.cyberpower_cloud.const import DOMAIN
+# pytest-homeassistant-custom-component calls pytest_socket.disable_socket()
+# at module import. On Windows the ProactorEventLoop creates a socket pair
+# during event-loop setup, which then trips SocketBlockedError. Neutralise
+# the disable call before the HA plugin's hooks run.
+pytest_socket.disable_socket = lambda *args, **kwargs: None  # type: ignore[assignment]
+pytest_socket.enable_socket()
 
 
 @pytest.fixture(autouse=True)
 def auto_enable_custom_integrations(enable_custom_integrations):
     """Enable custom integrations for all tests."""
+    pytest_socket.enable_socket()
     yield
 
 

@@ -1,4 +1,5 @@
 """Tests for CyberPower Cloud constants."""
+
 from custom_components.cyberpower_cloud.const import (
     API_BASE_URL,
     DEFAULT_SCAN_INTERVAL,
