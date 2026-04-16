@@ -9,10 +9,24 @@ from unittest.mock import AsyncMock, patch
 import pytest
 import pytest_socket
 
-# pytest-homeassistant-custom-component calls pytest_socket.disable_socket()
-# at module import. On Windows the ProactorEventLoop creates a socket pair
-# during event-loop setup, which then trips SocketBlockedError. Neutralise
-# the disable call before the HA plugin's hooks run.
+# ---------------------------------------------------------------------------
+# Session-wide socket shim (Windows-specific workaround)
+# ---------------------------------------------------------------------------
+# pytest-homeassistant-custom-component calls ``pytest_socket.disable_socket()``
+# at module import to force "no real network" during tests. On Windows the
+# ``asyncio.ProactorEventLoop`` creates a local socket pair as part of its own
+# setup, which the disable hook then mistakes for an outbound connection and
+# raises ``SocketBlockedError`` before any test even starts.
+#
+# We neutralise the disable call *at module level* — this runs before the HA
+# plugin's hooks — and re-enable sockets for the whole session. Every test in
+# this repo either uses ``aiohttp`` responses from ``AsyncMock`` or does not
+# touch the network at all; there is no real-network risk being hidden.
+#
+# SCOPE: session-wide. Do not narrow this — the HA plugin disables sockets
+# once at import time, so a per-test patch would be racy and sometimes too
+# late. If a future test genuinely needs socket blocking, re-enable
+# pytest_socket locally inside that test.
 pytest_socket.disable_socket = lambda *args, **kwargs: None  # type: ignore[assignment]
 pytest_socket.enable_socket()
 

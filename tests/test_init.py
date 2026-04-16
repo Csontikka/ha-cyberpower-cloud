@@ -54,7 +54,13 @@ def _patch_coordinator():
 
 
 def test_setup_entry_happy_path():
-    """Successful setup stores coordinators in runtime_data and forwards platforms."""
+    """Successful setup stores the constructed coordinator in runtime_data, forwards platforms.
+
+    runtime_data[0] must be the *exact* coordinator instance that was constructed
+    — platform setup (sensor/binary_sensor/number) will call methods on it, so a
+    MagicMock from the wrong patch target would pass a shallow len() check but
+    crash later.
+    """
 
     async def _run():
         entry = _make_entry()
@@ -74,19 +80,28 @@ def test_setup_entry_happy_path():
                     }
                 ]
             ),
-            _patch_coordinator(),
+            patch(
+                "custom_components.cyberpower_cloud.CyberPowerCoordinator"
+            ) as coord_cls,
             patch(
                 "custom_components.cyberpower_cloud.async_get_clientsession",
                 return_value=MagicMock(),
             ),
         ):
+            coord_cls.return_value.async_config_entry_first_refresh = AsyncMock()
             result = await async_setup_entry(hass, entry)
-        return result, entry, hass
+        return result, entry, hass, coord_cls
 
-    result, entry, hass = asyncio.run(_run())
+    result, entry, hass, coord_cls = asyncio.run(_run())
     assert result is True
     assert isinstance(entry.runtime_data, list)
     assert len(entry.runtime_data) == 1
+    # runtime_data must hold the exact coordinator instance constructed by setup.
+    assert entry.runtime_data[0] is coord_cls.return_value
+    # First refresh was awaited — without it HA would not mark the entry loaded.
+    coord_cls.return_value.async_config_entry_first_refresh.assert_awaited_once()
+    # RP (1500) from device info flows into the coordinator.
+    assert coord_cls.call_args.kwargs["ups_rated_power"] == 1500
     hass.config_entries.async_forward_entry_setups.assert_awaited_once()
     entry.async_on_unload.assert_called_once()
 

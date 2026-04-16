@@ -7,6 +7,7 @@ from unittest.mock import MagicMock, patch
 
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
+from custom_components.cyberpower_cloud import sensor as sensor_module
 from custom_components.cyberpower_cloud.sensor import (
     DEVICE_STATUS_MAP,
     SENSOR_DESCRIPTIONS,
@@ -38,15 +39,48 @@ def _make_sensor(coord, key: str):
     return sensor
 
 
-def test_sensor_descriptions_count():
-    """Sensor catalog is non-empty and keys are unique."""
-    assert len(SENSOR_DESCRIPTIONS) >= 13
+EXPECTED_SENSOR_KEYS = frozenset(
+    {
+        "input_voltage",
+        "output_voltage",
+        "input_frequency",
+        "output_frequency",
+        "battery_capacity",
+        "battery_runtime",
+        "load",
+        "battery_health",
+        "ups_temperature",
+        "environment_temperature",
+        "environment_humidity",
+        "device_status",
+        "power_consumption",
+        "last_update",
+    }
+)
+
+
+def test_sensor_descriptions_exact_set():
+    """Sensor catalog exposes exactly the documented entities — nothing added or removed.
+
+    Anything here showing up as a diff means a user-visible entity changed and
+    docs/translations need syncing. Anything removed is a silent breaking change.
+    """
     keys = [d.key for d in SENSOR_DESCRIPTIONS]
-    assert len(keys) == len(set(keys))
+    assert len(keys) == len(set(keys))  # no duplicates
+    assert set(keys) == EXPECTED_SENSOR_KEYS
+
+
+def test_parallel_updates_zero():
+    """PARALLEL_UPDATES=0 lets HA fan out concurrent reads across entities.
+
+    A non-zero value here would serialise state reads and visibly slow the
+    dashboard under many sensors.
+    """
+    assert sensor_module.PARALLEL_UPDATES == 0
 
 
 def test_async_setup_entry_adds_all_sensors():
-    """Setup adds one CyberPowerSensor per description per coordinator."""
+    """Setup adds one CyberPowerSensor per description per coordinator, all with matching SN."""
 
     async def _run():
         entry = MagicMock()
@@ -62,6 +96,12 @@ def test_async_setup_entry_adds_all_sensors():
 
     entities = asyncio.run(_run())
     assert len(entities) == 2 * len(SENSOR_DESCRIPTIONS)
+    # Every entity is a CyberPowerSensor, unique_id partitioned by SN.
+    assert all(isinstance(e, CyberPowerSensor) for e in entities)
+    a_ids = {e._attr_unique_id for e in entities if e._attr_unique_id.startswith("A_")}
+    b_ids = {e._attr_unique_id for e in entities if e._attr_unique_id.startswith("B_")}
+    assert len(a_ids) == len(SENSOR_DESCRIPTIONS)
+    assert len(b_ids) == len(SENSOR_DESCRIPTIONS)
 
 
 def test_native_value_none_without_data():

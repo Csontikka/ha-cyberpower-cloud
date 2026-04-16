@@ -7,10 +7,16 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
+from custom_components.cyberpower_cloud import number as number_module
 from custom_components.cyberpower_cloud.number import (
     CyberPowerRatedPowerNumber,
     async_setup_entry,
 )
+
+
+def test_parallel_updates_zero():
+    """PARALLEL_UPDATES=0 matches the sensor platform; writes here don't fan out."""
+    assert number_module.PARALLEL_UPDATES == 0
 
 
 def _mock_coordinator(rated_power: int = 2000, sn: str = "SN001"):
@@ -141,3 +147,27 @@ def test_async_added_to_hass_handles_missing_last_state():
 
     num = asyncio.run(_run())
     assert num._attr_native_value == 2000
+
+
+def test_async_added_to_hass_restores_float_string_value():
+    """HA persists number state as a float string — int(float(...)) truncates cleanly.
+
+    Documents that '1800.5' restores to 1800 (integer watts). The NumberEntity
+    step is 1, so fractional watts are never written by the UI in the first
+    place, but HA may still round-trip values through float serialisation.
+    """
+
+    async def _run():
+        coord = _mock_coordinator(rated_power=2000)
+        num = _make_number(coord)
+        num.async_get_last_state = AsyncMock(return_value=_restore_state("1800.5"))
+        with patch(
+            "homeassistant.helpers.update_coordinator.CoordinatorEntity.async_added_to_hass",
+            new_callable=AsyncMock,
+        ):
+            await num.async_added_to_hass()
+        return coord, num
+
+    coord, num = asyncio.run(_run())
+    assert num._attr_native_value == 1800
+    assert coord.ups_rated_power == 1800

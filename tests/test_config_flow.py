@@ -91,7 +91,11 @@ def test_config_flow_success_shows_reminder():
 
 
 def test_config_flow_reminder_creates_entry():
-    """Submitting the reminder step creates the config entry."""
+    """Reminder step creates the entry with exact title + user credentials.
+
+    Verifies the full entry payload — title uses device names, data carries the
+    email/password unchanged — not just that *some* create_entry call happened.
+    """
 
     async def _run():
         flow = _make_flow()
@@ -101,13 +105,22 @@ def test_config_flow_reminder_creates_entry():
         with patch.object(
             flow,
             "async_create_entry",
-            return_value={"type": "create_entry", "title": "CyberPower (Test UPS)"},
-        ):
-            return await flow.async_step_rated_power_reminder({})
+            side_effect=lambda **kw: {
+                "type": "create_entry",
+                "title": kw["title"],
+                "data": kw["data"],
+            },
+        ) as mock_create:
+            result = await flow.async_step_rated_power_reminder({})
+        return result, mock_create
 
-    result = asyncio.run(_run())
+    result, mock_create = asyncio.run(_run())
     assert result["type"] == "create_entry"
     assert result["title"] == "CyberPower (Test UPS)"
+    mock_create.assert_called_once_with(
+        title="CyberPower (Test UPS)",
+        data=MOCK_CONFIG_ENTRY_DATA,
+    )
 
 
 def test_config_flow_invalid_auth():
@@ -314,7 +327,11 @@ def test_reauth_redirects_to_confirm_form():
 
 
 def test_reauth_confirm_success_updates_entry_and_aborts():
-    """Successful reauth updates the entry and aborts with reauth_successful."""
+    """Successful reauth writes the NEW password into entry.data, preserves email, aborts.
+
+    Verifies the update_entry call carries the new password (not the old one)
+    and that async_reload is kicked off so HA re-runs setup with fresh creds.
+    """
 
     async def _run():
         flow, entry = _reauth_flow()
@@ -336,10 +353,23 @@ def test_reauth_confirm_success_updates_entry_and_aborts():
                 side_effect=lambda **kw: {"type": "abort", "reason": kw["reason"]},
             ),
         ):
-            return await flow.async_step_reauth_confirm({"password": "newpw"})
+            result = await flow.async_step_reauth_confirm({"password": "newpw"})
+        return result, flow, entry
 
-    result = asyncio.run(_run())
+    result, flow, entry = asyncio.run(_run())
     assert result["reason"] == "reauth_successful"
+
+    # Update was called once, carried the new password, preserved the email.
+    flow.hass.config_entries.async_update_entry.assert_called_once()
+    call_entry, call_data = (
+        flow.hass.config_entries.async_update_entry.call_args.args[0],
+        flow.hass.config_entries.async_update_entry.call_args.kwargs["data"],
+    )
+    assert call_entry is entry
+    assert call_data["password"] == "newpw"
+    assert call_data["email"] == MOCK_CONFIG_ENTRY_DATA["email"]
+    # Reload triggered so HA picks up the new credentials immediately.
+    flow.hass.config_entries.async_reload.assert_awaited_once_with(entry.entry_id)
 
 
 def test_reauth_confirm_invalid_auth_shows_form():
@@ -549,7 +579,7 @@ def test_reconfigure_shows_form_without_input():
 
 
 def test_reconfigure_reminder_submission_updates_entry():
-    """Submitting the reminder step updates the entry and aborts."""
+    """Reconfigure-reminder submission writes the new user input into entry.data and reloads."""
 
     async def _run():
         flow, entry = _reauth_flow()
@@ -561,10 +591,15 @@ def test_reconfigure_reminder_submission_updates_entry():
             "async_abort",
             side_effect=lambda **kw: {"type": "abort", "reason": kw["reason"]},
         ):
-            return await flow.async_step_reconfigure_reminder({})
+            result = await flow.async_step_reconfigure_reminder({})
+        return result, flow, entry
 
-    result = asyncio.run(_run())
+    result, flow, entry = asyncio.run(_run())
     assert result["reason"] == "reconfigure_successful"
+    flow.hass.config_entries.async_update_entry.assert_called_once_with(
+        entry, data=MOCK_CONFIG_ENTRY_DATA
+    )
+    flow.hass.config_entries.async_reload.assert_awaited_once_with(entry.entry_id)
 
 
 def test_reconfigure_reminder_shows_form_without_input():
