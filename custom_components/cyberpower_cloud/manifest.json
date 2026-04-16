@@ -6,6 +6,7 @@
   "documentation": "https://github.com/Csontikka/ha-cyberpower-cloud",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/Csontikka/ha-cyberpower-cloud/issues",
+  "quality_scale": "silver",
   "requirements": [],
   "version": "0.1.1"
 }
