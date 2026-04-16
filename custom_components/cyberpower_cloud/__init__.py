@@ -80,7 +80,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: CyberPowerConfigEntry) -
     return True
 
 
-async def _async_update_options(hass: HomeAssistant, entry: CyberPowerConfigEntry) -> None:
+async def _async_update_options(
+    hass: HomeAssistant, entry: CyberPowerConfigEntry
+) -> None:
     """Reload integration when options change."""
     await hass.config_entries.async_reload(entry.entry_id)
 

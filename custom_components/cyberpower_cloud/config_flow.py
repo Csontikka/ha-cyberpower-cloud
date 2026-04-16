@@ -186,9 +186,7 @@ class CyberPowerCloudConfigFlow(ConfigFlow, domain=DOMAIN):
     ) -> ConfigFlowResult:
         """Remind the user to verify UPS Rated Power after reconfigure."""
         if user_input is not None:
-            entry = self.hass.config_entries.async_get_entry(
-                self.context["entry_id"]
-            )
+            entry = self.hass.config_entries.async_get_entry(self.context["entry_id"])
             self.hass.config_entries.async_update_entry(
                 entry, data=self._pending_user_input
             )
