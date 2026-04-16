@@ -122,7 +122,7 @@ class CyberPowerCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             raise ConfigEntryAuthFailed(str(err)) from err
         except ApiError as err:
             self._consecutive_errors += 1
-            _LOGGER.warning(
+            _LOGGER.debug(
                 "CyberPower %s API error (%d/%d): %s",
                 self.device_sn,
                 self._consecutive_errors,

@@ -6,13 +6,13 @@ from homeassistant.components.number import NumberEntity, NumberMode
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import EntityCategory, UnitOfPower
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity
-from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import DOMAIN
 from .coordinator import CyberPowerCoordinator
+from .entity import CyberPowerEntity
+
+PARALLEL_UPDATES = 0
 
 
 async def async_setup_entry(
@@ -21,7 +21,7 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up CyberPower number entities from config entry."""
-    coordinators: list[CyberPowerCoordinator] = hass.data[DOMAIN][entry.entry_id]
+    coordinators: list[CyberPowerCoordinator] = entry.runtime_data
 
     entities: list[NumberEntity] = []
     for coordinator in coordinators:
@@ -29,12 +29,9 @@ async def async_setup_entry(
     async_add_entities(entities)
 
 
-class CyberPowerRatedPowerNumber(
-    CoordinatorEntity[CyberPowerCoordinator], NumberEntity, RestoreEntity
-):
+class CyberPowerRatedPowerNumber(CyberPowerEntity, NumberEntity, RestoreEntity):
     """Number entity to configure UPS rated power per device."""
 
-    _attr_has_entity_name = True
     _attr_translation_key = "ups_rated_power"
     _attr_native_min_value = 100
     _attr_native_max_value = 20000
@@ -47,21 +44,6 @@ class CyberPowerRatedPowerNumber(
         super().__init__(coordinator)
         self._attr_unique_id = f"{coordinator.device_sn}_rated_power"
         self._attr_native_value = coordinator.ups_rated_power
-
-    @property
-    def device_info(self) -> DeviceInfo:
-        info = DeviceInfo(
-            identifiers={(DOMAIN, self.coordinator.device_sn)},
-            name=self.coordinator.device_name,
-            manufacturer="CyberPower",
-            model=self.coordinator.device_model,
-            serial_number=self.coordinator.device_sn,
-        )
-        if self.coordinator.sw_version:
-            info["sw_version"] = self.coordinator.sw_version
-        if self.coordinator.fw_version:
-            info["hw_version"] = self.coordinator.fw_version
-        return info
 
     async def async_added_to_hass(self) -> None:
         """Restore previous value on startup."""

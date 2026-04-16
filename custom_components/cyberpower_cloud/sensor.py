@@ -22,12 +22,12 @@ from homeassistant.const import (
 )
 from homeassistant.util.dt import parse_datetime
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import DOMAIN
 from .coordinator import CyberPowerCoordinator
+from .entity import CyberPowerEntity
+
+PARALLEL_UPDATES = 0
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -159,7 +159,7 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up CyberPower sensors from config entry."""
-    coordinators: list[CyberPowerCoordinator] = hass.data[DOMAIN][entry.entry_id]
+    coordinators: list[CyberPowerCoordinator] = entry.runtime_data
 
     entities: list[CyberPowerSensor] = []
     for coordinator in coordinators:
@@ -169,11 +169,10 @@ async def async_setup_entry(
     async_add_entities(entities)
 
 
-class CyberPowerSensor(CoordinatorEntity[CyberPowerCoordinator], SensorEntity):
+class CyberPowerSensor(CyberPowerEntity, SensorEntity):
     """Sensor entity for CyberPower UPS data."""
 
     entity_description: CyberPowerSensorDescription
-    _attr_has_entity_name = True
 
     def __init__(
         self,
@@ -183,21 +182,6 @@ class CyberPowerSensor(CoordinatorEntity[CyberPowerCoordinator], SensorEntity):
         super().__init__(coordinator)
         self.entity_description = description
         self._attr_unique_id = f"{coordinator.device_sn}_{description.key}"
-
-    @property
-    def device_info(self) -> DeviceInfo:
-        info = DeviceInfo(
-            identifiers={(DOMAIN, self.coordinator.device_sn)},
-            name=self.coordinator.device_name,
-            manufacturer="CyberPower",
-            model=self.coordinator.device_model,
-            serial_number=self.coordinator.device_sn,
-        )
-        if self.coordinator.sw_version:
-            info["sw_version"] = self.coordinator.sw_version
-        if self.coordinator.fw_version:
-            info["hw_version"] = self.coordinator.fw_version
-        return info
 
     @property
     def native_value(self) -> Any:
