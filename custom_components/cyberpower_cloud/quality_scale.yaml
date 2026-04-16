@@ -1,0 +1,90 @@
+rules:
+  # Bronze
+  action-setup:
+    status: exempt
+    comment: No custom services are registered.
+  appropriate-polling: done
+  brands:
+    status: todo
+    comment: Logo PR to home-assistant/brands pending.
+  common-modules: done
+  config-flow: done
+  config-flow-test-coverage: done
+  dependency-transparency:
+    status: exempt
+    comment: No third-party PyPI dependencies; the API client ships with the integration.
+  docs-actions:
+    status: exempt
+    comment: No custom services are registered.
+  docs-high-level-description: done
+  docs-installation-instructions: done
+  docs-removal-instructions: done
+  entity-event-setup:
+    status: exempt
+    comment: Entities derive their state from the coordinator only; no external event subscriptions.
+  entity-unique-id: done
+  has-entity-name: done
+  runtime-data: done
+  test-before-configure: done
+  test-before-setup: done
+  unique-config-entry: done
+
+  # Silver
+  action-exceptions:
+    status: exempt
+    comment: No custom services are registered.
+  config-entry-unloading: done
+  docs-configuration-parameters: done
+  docs-installation-parameters: done
+  entity-unavailable: done
+  integration-owner: done
+  log-when-unavailable: done
+  parallel-updates: done
+  reauthentication-flow: done
+  test-coverage: done
+
+  # Gold
+  devices: done
+  diagnostics: done
+  discovery-update-info:
+    status: exempt
+    comment: Cloud-polling integration; devices are not discovered on the local network.
+  discovery:
+    status: exempt
+    comment: Cloud-polling integration; devices are retrieved from the PowerPanel Cloud account.
+  docs-data-update: done
+  docs-examples:
+    status: todo
+    comment: Dashboard/automation examples not yet included in README.
+  docs-known-limitations: done
+  docs-supported-devices: done
+  docs-supported-functions: done
+  docs-troubleshooting: done
+  docs-use-cases: done
+  dynamic-devices:
+    status: todo
+    comment: New UPS devices added to the account are only discovered on reload.
+  entity-category: done
+  entity-device-class: done
+  entity-disabled-by-default:
+    status: exempt
+    comment: All entities are useful by default; no rarely-used entities to disable.
+  entity-translations: done
+  exception-translations:
+    status: todo
+    comment: Error messages from api/coordinator are not yet translated via exception_translation_key.
+  icon-translations:
+    status: exempt
+    comment: Entities rely on device_class-based default icons.
+  reconfiguration-flow: done
+  repair-issues: done
+  stale-devices:
+    status: todo
+    comment: Devices removed from the PowerPanel Cloud account are not pruned from the device registry automatically.
+
+  # Platinum
+  async-dependency: done
+  inject-websession: done
+  strict-typing:
+    status: todo
+    comment: Full PEP 484 type coverage pending; signatures are typed but some locals are not.
