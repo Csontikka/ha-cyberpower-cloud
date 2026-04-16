@@ -4,9 +4,7 @@ rules:
     status: exempt
     comment: No custom services are registered.
   appropriate-polling: done
-  brands:
-    status: todo
-    comment: Logo PR to home-assistant/brands pending.
+  brands: done
   common-modules: done
   config-flow: done
   config-flow-test-coverage: done
