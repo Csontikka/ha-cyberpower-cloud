@@ -9,6 +9,13 @@ import pytest
 
 from custom_components.cyberpower_cloud.const import DOMAIN
 
+
+@pytest.fixture(autouse=True)
+def auto_enable_custom_integrations(enable_custom_integrations):
+    """Enable custom integrations for all tests."""
+    yield
+
+
 MOCK_EMAIL = "test@example.com"
 MOCK_PASSWORD = "TestPass123"
 

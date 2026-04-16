@@ -48,6 +48,9 @@ import/
 # Screenshots (dev only)
 screenshots_targeted/
 
+# Internal working docs (not published)
+/docs/
+
 # Icon/banner dev artifacts
 /generate_icons.py
 /icon_proposals/
