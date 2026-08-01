@@ -302,8 +302,9 @@ Available in 30 languages:
 
 Found a bug or have an idea? [Open an issue](https://github.com/Csontikka/ha-cyberpower-cloud/issues) — feedback and feature requests are welcome!
 
-If you find this integration useful, consider [buying me a coffee](https://www.buymeacoffee.com/csontikka) ☕.
+If you find this integration useful, consider [buying me a coffee](https://www.buymeacoffee.com/csontikka) ☕ or [sponsoring me on GitHub](https://github.com/sponsors/Csontikka).
 
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub-Sponsor-ea4aaa?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/Csontikka)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-donate-yellow?logo=buy-me-a-coffee&logoColor=white)](https://www.buymeacoffee.com/csontikka)
 
 ## License
