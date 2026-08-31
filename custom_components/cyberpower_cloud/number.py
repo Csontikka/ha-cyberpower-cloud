@@ -48,10 +48,11 @@ class CyberPowerRatedPowerNumber(CyberPowerEntity, NumberEntity, RestoreEntity):
     async def async_added_to_hass(self) -> None:
         """Restore previous value on startup."""
         await super().async_added_to_hass()
-        if (last_state := await self.async_get_last_state()) is not None:
-            if last_state.state not in (None, "unknown", "unavailable"):
-                self._attr_native_value = int(float(last_state.state))
-                self.coordinator.ups_rated_power = self._attr_native_value
+        if (
+            last_state := await self.async_get_last_state()
+        ) is not None and last_state.state not in (None, "unknown", "unavailable"):
+            self._attr_native_value = int(float(last_state.state))
+            self.coordinator.ups_rated_power = self._attr_native_value
 
     async def async_set_native_value(self, value: float) -> None:
         """Update the rated power value and refresh dependent sensors."""

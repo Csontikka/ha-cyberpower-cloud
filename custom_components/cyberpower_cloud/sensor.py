@@ -20,9 +20,9 @@ from homeassistant.const import (
     UnitOfTemperature,
     UnitOfTime,
 )
-from homeassistant.util.dt import parse_datetime
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.util.dt import parse_datetime
 
 from .coordinator import CyberPowerCoordinator
 from .entity import CyberPowerEntity
